@@ -1,7 +1,7 @@
 defaults:
   - _self_
   - model: instanovoplus_base
-  - dataset: acpt
+  - dataset: nine_species
   - residues: default
 
 # Overwritten when using Aichor
@@ -12,21 +12,21 @@ seed: 101
 warmup_iters: 10000
 learning_rate: 5e-5
 weight_decay: 0
-train_batch_size: 128
+train_batch_size: 32
 n_gpu: 1
 gradient_clip_val: 5 #10.0
-predict_batch_size: 128
+predict_batch_size: 32
 compile_model: True
 
 # Logging parameters
-epochs: 30 #10
+epochs: 10 #10
 num_sanity_val_steps: 10
 console_logging_steps: 2000
 tensorboard_logging_steps: 500
-report_to: neptune
-run_name: instanovoplus_acpt_base
+report_to:
+run_name: instanovoplus_nine_species_base
 tags:
-  - acpt
+  - nine_species
 
 # Training data parameters
 train_subset: 1
