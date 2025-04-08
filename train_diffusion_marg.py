@@ -10,9 +10,7 @@ from omegaconf import DictConfig, OmegaConf, open_dict
 from instanovo_marg.__init__ import console
 from instanovo_marg.diffusion.train import train as train_diffusion
 from instanovo_marg.transformer.train import _set_author_neptune_api_token
-from instanovo_marg.utils import SpectrumDataFrame
 from instanovo_marg.utils.colorlogging import ColorLog
-from instanovo_marg.utils.marginal_distribution import get_marginal_distribution
 
 logger = ColorLog(console, __name__).logger
 
@@ -55,33 +53,6 @@ config = compose_config(
     config_name=config_name,
     overrides=["model.dropout=0.1", "+optimizer.lr=0.0005"],
 )
-
-
-sdf_train = SpectrumDataFrame.from_huggingface(
-    "InstaDeepAI/ms_ninespecies_benchmark",
-    is_annotated=True,
-    shuffle=False,
-    split="train",  # Let's only use a subset of the test data for faster inference in this notebook
-)
-
-sdf_train.write_ipc("data/new_schema/train.ipc")
-
-
-# Validation
-sdf_valid = SpectrumDataFrame.from_huggingface(
-    "InstaDeepAI/ms_ninespecies_benchmark",
-    is_annotated=True,
-    shuffle=False,
-    split="validation",  # Let's only use a subset of the test data for faster inference in this notebook
-)
-sdf_valid.write_ipc("data/new_schema/valid.ipc")
-
-
-if config["n_gpu"] > 1:
-    raise ValueError("n_gpu > 1 currently not supported.")
-
-
-get_marginal_distribution()
 
 
 logger.info("Initializing instanovo_marg+ training.")

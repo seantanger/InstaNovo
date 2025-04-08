@@ -10,7 +10,7 @@ tb_summarywriter: "./logs/instanovo/instanovplus-base"
 # Training parameters
 seed: 101
 warmup_iters: 10000
-learning_rate: 5e-5
+learning_rate: 5e-4
 weight_decay: 0
 train_batch_size: 32
 n_gpu: 1
@@ -19,7 +19,7 @@ predict_batch_size: 32
 compile_model: True
 
 # Logging parameters
-epochs: 10 #10
+epochs: 2 #10
 num_sanity_val_steps: 10
 console_logging_steps: 2000
 tensorboard_logging_steps: 500
@@ -29,7 +29,7 @@ tags:
   - nine_species
 
 # Training data parameters
-train_subset: 1
+train_subset: 0.05
 valid_subset: 0.01
 val_check_interval: 0.2
 lazy_loading: True # Use lazy loading mode
@@ -42,8 +42,8 @@ verbose_loading: True # Verbose SDF logs when loading the dataset
 # Checkpointing parameters
 save_model: True
 model_save_folder_path: "checkpoints/instanovoplus-base"
-ckpt_interval: 50000
-train_from_scratch: True
+ckpt_interval: 154
+train_from_scratch: False
 resume_checkpoint:
 
 blacklist:
@@ -51,4 +51,4 @@ blacklist:
 device: auto
 fp16: True
 
-time_steps: 200
+time_steps: 20
