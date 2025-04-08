@@ -31,7 +31,7 @@ from instanovo_marg.__init__ import console
 from instanovo_marg.constants import ANNOTATED_COLUMN, ANNOTATION_ERROR
 from instanovo_marg.inference import Decoder, GreedyDecoder, ScoredSequence
 from instanovo_marg.transformer.dataset import SpectrumDataset, collate_batch, remove_modifications
-from instanovo_marg.transformer.model import instanovo_marg
+from instanovo_marg.transformer.model import Instanovo_marg
 from instanovo_marg.types import (
     Peptide,
     PeptideMask,
@@ -59,7 +59,7 @@ class PTModule(L.LightningModule):
     def __init__(
         self,
         config: DictConfig | dict[str, Any],
-        model: instanovo_marg,
+        model: Instanovo_marg,
         decoder: Decoder,
         metrics: Metrics,
         sw: SummaryWriter,
@@ -640,7 +640,7 @@ def train(
     logger.info(f" - peptides_mask.shape={peptides_mask.shape}")
 
     # init model
-    model = instanovo_marg(
+    model = Instanovo_marg(
         residue_set=residue_set,
         dim_model=config["dim_model"],
         n_head=config["n_head"],
