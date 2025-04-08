@@ -8,7 +8,7 @@ import requests
 from rich.progress import Progress
 from typer.testing import CliRunner
 
-from instanovo.scripts.get_zenodo_record import RECORD_ID, app, get_zenodo, main, unzip_zenodo
+from instanovo_marg.scripts.get_zenodo_record import RECORD_ID, app, get_zenodo, main, unzip_zenodo
 
 
 @pytest.fixture
@@ -113,8 +113,8 @@ class TestMainCommand:
         extract_path: str = str(tmp_path / "extracted")
 
         # Mock the functions to avoid actual network/file operations
-        with patch("instanovo.scripts.get_zenodo_record.get_zenodo") as mock_get:
-            with patch("instanovo.scripts.get_zenodo_record.unzip_zenodo") as mock_unzip:
+        with patch("instanovo_marg.scripts.get_zenodo_record.get_zenodo") as mock_get:
+            with patch("instanovo_marg.scripts.get_zenodo_record.unzip_zenodo") as mock_unzip:
                 with patch("os.path.exists", return_value=False):
                     with patch("os.listdir", return_value=[]):
                         # Execute CLI command
@@ -163,8 +163,8 @@ class TestMainCommand:
 
     def test_main_with_parameters(self) -> None:
         """Test main function with different parameters."""
-        with patch("instanovo.scripts.get_zenodo_record.get_zenodo") as mock_get:
-            with patch("instanovo.scripts.get_zenodo_record.unzip_zenodo") as mock_unzip:
+        with patch("instanovo_marg.scripts.get_zenodo_record.get_zenodo") as mock_get:
+            with patch("instanovo_marg.scripts.get_zenodo_record.unzip_zenodo") as mock_unzip:
                 with patch("os.path.exists", return_value=False):
                     with patch("os.listdir", return_value=[]):
                         # We need to patch the Progress creation and usage
@@ -199,8 +199,8 @@ def test_cli_with_different_parameters(
     runner: CliRunner, zenodo_url: str, zip_path: str, extract_path: str
 ) -> None:
     """Test CLI with different parameters."""
-    with patch("instanovo.scripts.get_zenodo_record.get_zenodo") as mock_get:
-        with patch("instanovo.scripts.get_zenodo_record.unzip_zenodo") as mock_unzip:
+    with patch("instanovo_marg.scripts.get_zenodo_record.get_zenodo") as mock_get:
+        with patch("instanovo_marg.scripts.get_zenodo_record.unzip_zenodo") as mock_unzip:
             with patch("os.path.exists", return_value=False):
                 with patch("os.listdir", return_value=[]):
                     # Execute CLI command with different parameters
