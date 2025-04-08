@@ -463,7 +463,7 @@ def train(config: DictConfig) -> None:
         valid_sdf.validate_precursor_mass(metrics)
 
     logger.info("Initializing loss.")
-    loss_function = DiffusionLoss(model=model)
+    loss_function = DiffusionLoss(model=model, sdf=train_sdf)
 
     logger.info("Initializing optimizer.")
     optimizer = torch.optim.Adam(
@@ -524,7 +524,7 @@ def train(config: DictConfig) -> None:
                     spectra=spectra,
                     spectra_padding_mask=spectra_padding_mask,
                     precursors=precursors,
-                    with_prior= True
+                    with_prior=True,
                 )  # these predictions have been reversed
 
             targets.extend(

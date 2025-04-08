@@ -14,15 +14,15 @@ from omegaconf import DictConfig
 from torch import Tensor, nn
 from tqdm import tqdm
 
-from instanovo.__init__ import console
-from instanovo.constants import LEGACY_PTM_TO_UNIMOD, MAX_SEQUENCE_LENGTH
-from instanovo.inference import Decodable
-from instanovo.transformer.layers import (
+from instanovo_marg.__init__ import console
+from instanovo_marg.constants import LEGACY_PTM_TO_UNIMOD, MAX_SEQUENCE_LENGTH
+from instanovo_marg.inference import Decodable
+from instanovo_marg.transformer.layers import (
     ConvPeakEmbedding,
     MultiScalePeakEmbedding,
     PositionalEncoding,
 )
-from instanovo.types import (
+from instanovo_marg.types import (
     DiscretizedMass,
     Peptide,
     PeptideMask,
@@ -33,8 +33,8 @@ from instanovo.types import (
     SpectrumEmbedding,
     SpectrumMask,
 )
-from instanovo.utils import ResidueSet
-from instanovo.utils.colorlogging import ColorLog
+from instanovo_marg.utils import ResidueSet
+from instanovo_marg.utils.colorlogging import ColorLog
 
 MODEL_TYPE = "transformer"
 
@@ -45,8 +45,8 @@ MODELS_PATH = Path(__file__).parent.parent / "models.json"
 MODEL_TYPE = "transformer"
 
 
-class InstaNovo(nn.Module, Decodable):
-    """The Instanovo model."""
+class Instanovo_marg(nn.Module, Decodable):
+    """The instanovo_marg model."""
 
     def __init__(
         self,
@@ -131,7 +131,8 @@ class InstaNovo(nn.Module, Decodable):
     def get_pretrained() -> list[str]:
         """Get a list of pretrained model ids."""
         # Load the models.json file
-        with resources.files("instanovo").joinpath("models.json").open("r", encoding="utf-8") as f:
+        models_json_path = resources.files("instanovo_marg").joinpath("models.json")
+        with models_json_path.open("r", encoding="utf-8") as f:
             models_config = json.load(f)
 
         if MODEL_TYPE not in models_config:
@@ -142,7 +143,7 @@ class InstaNovo(nn.Module, Decodable):
     @classmethod
     def load(
         cls, path: str, update_residues_to_unimod: bool = True
-    ) -> Tuple["InstaNovo", "DictConfig"]:
+    ) -> Tuple["instanovo_marg", "DictConfig"]:
         """Load model from checkpoint path."""
         # Add  to allow list
         _whitelist_torch_omegaconf()
@@ -181,7 +182,7 @@ class InstaNovo(nn.Module, Decodable):
     @classmethod
     def from_pretrained(
         cls, model_id: str, update_residues_to_unimod: bool = True
-    ) -> Tuple["InstaNovo", "DictConfig"]:
+    ) -> Tuple["instanovo_marg", "DictConfig"]:
         """Download and load by model id or model path."""
         # Check if model_id is a local file path
         if "/" in model_id or "\\" in model_id or model_id.endswith(".ckpt"):
@@ -191,7 +192,11 @@ class InstaNovo(nn.Module, Decodable):
                 raise FileNotFoundError(f"No file found at path: {model_id}")
 
         # Load the models.json file
-        with resources.files("instanovo").joinpath("models.json").open("r", encoding="utf-8") as f:
+        with (
+            resources.files("instanovo_marg")
+            .joinpath("models.json")
+            .open("r", encoding="utf-8") as f
+        ):
             models_config = json.load(f)
 
         # Find the model in the config
@@ -205,7 +210,7 @@ class InstaNovo(nn.Module, Decodable):
         url = model_info["remote"]
 
         # Create cache directory if it doesn't exist
-        cache_dir = Path.home() / ".cache" / "instanovo"
+        cache_dir = Path.home() / ".cache" / "instanovo_marg"
         cache_dir.mkdir(parents=True, exist_ok=True)
 
         # Generate a filename for the cached model
@@ -329,7 +334,7 @@ class InstaNovo(nn.Module, Decodable):
 
     def decode(self, sequence: Peptide) -> list[str]:
         """Decode a single sequence of AA IDs."""
-        # Note: Sequence is reversed as InstaNovo predicts right-to-left.
+        # Note: Sequence is reversed as instanovo_marg predicts right-to-left.
         # We reverse the sequence again when decoding to ensure
         # the decoder outputs forward sequences.
         return self.residue_set.decode(sequence, reverse=True)  # type: ignore
@@ -443,7 +448,7 @@ class InstaNovo(nn.Module, Decodable):
             from torch.nn.attention import SDPBackend, sdpa_kernel
         except ImportError:
             raise ImportError(
-                "Training InstaNovo with Flash attention enabled requires at least pytorch v2.3. "
+                "Training with Flash attention enabled requires at least pytorch v2.3."
                 "Please upgrade your pytorch version"
             ) from None
 
@@ -488,7 +493,7 @@ class InstaNovo(nn.Module, Decodable):
             from torch.nn.attention import SDPBackend, sdpa_kernel
         except ImportError:
             raise ImportError(
-                "Training InstaNovo with Flash attention enabled requires at least pytorch v2.3. "
+                "Training instanovo_marg with Flash attention enabled requires at least pytorch v2.3. "
                 "Please upgrade your pytorch version"
             ) from None
 

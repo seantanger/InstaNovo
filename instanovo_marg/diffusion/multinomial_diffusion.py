@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import math
 import os
 import shutil
 from importlib import resources
@@ -25,7 +24,6 @@ from instanovo_marg.types import Peptide, ResidueLogProbabilities, TimeStep
 from instanovo_marg.utils.colorlogging import ColorLog
 from instanovo_marg.utils.device_handler import check_device
 from instanovo_marg.utils.residues import ResidueSet
-from instanovo_marg.utils.marginal_distribution import get_marginal_distribution
 
 MODEL_TYPE = "diffusion"
 
@@ -88,6 +86,7 @@ class InstaNovoPlus(nn.Module):
         transition_model: nn.Module,
         diffusion_schedule: Float[torch.Tensor, " time"],
         residues: ResidueSet,
+        sdf=None,
     ) -> None:
         super().__init__()
         self.config = config
@@ -101,6 +100,7 @@ class InstaNovoPlus(nn.Module):
             "cumulative_schedule_complement",
             torch.log(1 - torch.exp(self.cumulative_schedule)),
         )
+        self.sdf = sdf
 
     def save(
         self,
@@ -272,8 +272,10 @@ class InstaNovoPlus(nn.Module):
     def get_pretrained() -> list[str]:
         """Get a list of pretrained model ids."""
         # Load the models.json file
-        with resources.files("instanovo_marg").joinpath("models.json").open("r", encoding="utf-8") as f:
+        models_json_path = resources.files("instanovo_marg").joinpath("models.json")
+        with models_json_path.open("r", encoding="utf-8") as f:
             models_config = json.load(f)
+
 
         if MODEL_TYPE not in models_config:
             return []
@@ -302,9 +304,9 @@ class InstaNovoPlus(nn.Module):
             return cls.load(model_id, device=device)
 
         # Load the models.json file
-        with resources.files("instanovo_marg").joinpath("models.json").open("r", encoding="utf-8") as f:
+        models_json_path = resources.files("instanovo_marg").joinpath("models.json")
+        with models_json_path.open("r", encoding="utf-8") as f:
             models_config = json.load(f)
-
         # Find the model in the config
         if MODEL_TYPE not in models_config or model_id not in models_config[MODEL_TYPE]:
             raise ValueError(
@@ -409,10 +411,8 @@ class InstaNovoPlus(nn.Module):
         )
         self.transition_model.head[1] = nn.Linear(model_dim, num_residues)
 
-
-    def update_sdf(self,sdf):
+    def update_sdf(self, sdf):
         self.sdf = sdf
-    
 
     def mixture_categorical(
         self,
@@ -436,14 +436,12 @@ class InstaNovoPlus(nn.Module):
             torch.FloatTensor[..., num_classes]:
                 The log-probabilities of the mixture.
         """
-        if hasattr(self, "sdf"):
-            raise ValueError("Need to use '.update_sdf()' to include sdf to compute marginal distribution.")
-
         import numpy as np
-        return torch.logaddexp(
-            log_x + log_alpha,
-            log_alpha_complement + np.log(get_marginal_distribution(self.sdf, log_x.shape[1]))
-        )
+
+        amino_acid_dist = np.load("instanovo_marg/configs/amino_acid_distribution.npy").squeeze()
+        amino_acid_dist_tensor = torch.tensor(amino_acid_dist, dtype=torch.float)
+        log_probs = amino_acid_dist_tensor.expand(log_x.shape[0], log_x.shape[1], log_x.shape[2])
+        return torch.logaddexp(log_x + log_alpha, log_alpha_complement + log_probs)
 
     def forward(
         self,
@@ -519,10 +517,11 @@ class DiffusionLoss(nn.Module):
             The multinomial diffusion class.
     """
 
-    def __init__(self, model: InstaNovoPlus) -> None:
+    def __init__(self, model: InstaNovoPlus, sdf=None) -> None:
         super().__init__()
         self.time_steps = model.time_steps
         self.model = model
+        self.sdf = sdf
 
     @staticmethod
     def kl_divergence(

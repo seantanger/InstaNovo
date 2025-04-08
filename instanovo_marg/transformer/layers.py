@@ -7,7 +7,7 @@ import torch
 from jaxtyping import Float
 from torch import Tensor, nn
 
-from instanovo.types import Spectrum, SpectrumEmbedding
+from instanovo_marg.types import Spectrum, SpectrumEmbedding
 
 
 class PositionalEncoding(nn.Module):

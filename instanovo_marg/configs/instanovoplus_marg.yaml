@@ -29,7 +29,7 @@ tags:
   - nine_species
 
 # Training data parameters
-train_subset: 0.001
+train_subset: 0.01
 valid_subset: 0.01
 val_check_interval: 0.2
 lazy_loading: True # Use lazy loading mode

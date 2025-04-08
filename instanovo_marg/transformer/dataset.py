@@ -11,11 +11,11 @@ from jaxtyping import Bool, Float, Integer
 from torch import Tensor, nn
 from torch.utils.data import Dataset
 
-from instanovo.__init__ import console
-from instanovo.constants import ANNOTATED_COLUMN, PROTON_MASS_AMU, MSColumns
-from instanovo.types import Peptide, PeptideMask, PrecursorFeatures, Spectrum, SpectrumMask
-from instanovo.utils import ResidueSet, SpectrumDataFrame
-from instanovo.utils.colorlogging import ColorLog
+from instanovo_marg.__init__ import console
+from instanovo_marg.constants import ANNOTATED_COLUMN, PROTON_MASS_AMU, MSColumns
+from instanovo_marg.types import Peptide, PeptideMask, PrecursorFeatures, Spectrum, SpectrumMask
+from instanovo_marg.utils import ResidueSet, SpectrumDataFrame
+from instanovo_marg.utils.colorlogging import ColorLog
 
 logger = ColorLog(console, __name__).logger
 

@@ -9,12 +9,12 @@ from torch.distributions import Categorical
 from instanovo_marg.constants import DIFFUSION_EVAL_STEPS, DIFFUSION_START_STEP
 from instanovo_marg.diffusion.multinomial_diffusion import DiffusionLoss, InstaNovoPlus
 from instanovo_marg.types import Peptide, PrecursorFeatures, Spectrum, SpectrumMask
-from instanovo_marg.utils.marginal_distribution import get_marginal_distribution
+
 
 class DiffusionDecoder:
     """Class for decoding from a diffusion model by forward sampling."""
 
-    def __init__(self, model: InstaNovoPlus, sdf = None) -> None:
+    def __init__(self, model: InstaNovoPlus, sdf=None) -> None:
         self.model = model
         self.time_steps = model.time_steps
         self.residues = model.residues
@@ -61,10 +61,15 @@ class DiffusionDecoder:
         batch_size, num_classes = spectra.size(0), len(self.model.residues)
         if initial_sequence is None:
             if with_prior:
+                import numpy as np
+
+                amino_acid_dist = np.load(
+                    "instanovo_marg/configs/amino_acid_distribution.npy"
+                ).squeeze()
+                amino_acid_dist_tensor = torch.tensor(amino_acid_dist, dtype=torch.float)
+                log_probs = amino_acid_dist_tensor.expand(batch_size, sequence_length, num_classes)
                 # Sample according to the given distribution
-                initial_distribution = Categorical(
-                    get_marginal_distribution(self.sdf, sequence_length)
-                )
+                initial_distribution = Categorical(logits=log_probs)
             else:
                 # Sample uniformly
                 initial_distribution = Categorical(

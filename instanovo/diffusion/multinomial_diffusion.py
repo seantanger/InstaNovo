@@ -583,8 +583,10 @@ class DiffusionLoss(nn.Module):
             .unsqueeze(-1)
             .unsqueeze(-1),
         )
-        x_next = Categorical(logits=log_probs).sample()
 
+        # print(log_x_0.shape)
+        # print(x_0)
+        x_next = Categorical(logits=log_probs).sample()
         # 2. Calculate loss
         log_dist = self.model.reverse_distribution(x_t=x_next, time=t, **kwargs)
 

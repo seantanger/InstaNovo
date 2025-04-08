@@ -26,13 +26,13 @@ from torch import Tensor, nn
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 
-import instanovo.utils.s3 as s3
-from instanovo.__init__ import console
-from instanovo.constants import ANNOTATED_COLUMN, ANNOTATION_ERROR
-from instanovo.inference import Decoder, GreedyDecoder, ScoredSequence
-from instanovo.transformer.dataset import SpectrumDataset, collate_batch, remove_modifications
-from instanovo.transformer.model import InstaNovo
-from instanovo.types import (
+import instanovo_marg.utils.s3 as s3
+from instanovo_marg.__init__ import console
+from instanovo_marg.constants import ANNOTATED_COLUMN, ANNOTATION_ERROR
+from instanovo_marg.inference import Decoder, GreedyDecoder, ScoredSequence
+from instanovo_marg.transformer.dataset import SpectrumDataset, collate_batch, remove_modifications
+from instanovo_marg.transformer.model import instanovo_marg
+from instanovo_marg.types import (
     Peptide,
     PeptideMask,
     PrecursorFeatures,
@@ -40,9 +40,9 @@ from instanovo.types import (
     Spectrum,
     SpectrumMask,
 )
-from instanovo.utils import Metrics, ResidueSet, SpectrumDataFrame
-from instanovo.utils.colorlogging import ColorLog
-from instanovo.utils.device_handler import check_device
+from instanovo_marg.utils import Metrics, ResidueSet, SpectrumDataFrame
+from instanovo_marg.utils.colorlogging import ColorLog
+from instanovo_marg.utils.device_handler import check_device
 
 load_dotenv()
 
@@ -59,7 +59,7 @@ class PTModule(L.LightningModule):
     def __init__(
         self,
         config: DictConfig | dict[str, Any],
-        model: InstaNovo,
+        model: instanovo_marg,
         decoder: Decoder,
         metrics: Metrics,
         sw: SummaryWriter,
@@ -640,7 +640,7 @@ def train(
     logger.info(f" - peptides_mask.shape={peptides_mask.shape}")
 
     # init model
-    model = InstaNovo(
+    model = instanovo_marg(
         residue_set=residue_set,
         dim_model=config["dim_model"],
         n_head=config["n_head"],
@@ -813,10 +813,10 @@ def train(
     )
 
     # Train the model.
-    logger.info("InstaNovo training started.")
+    logger.info("instanovo_marg training started.")
     trainer.fit(ptmodel, train_dl, valid_dl)
 
-    logger.info("InstaNovo training finished.")
+    logger.info("instanovo_marg training finished.")
 
 
 def _get_strategy() -> DDPStrategy | str:
@@ -906,7 +906,7 @@ class WarmupScheduler(torch.optim.lr_scheduler._LRScheduler):
 
 
 # TODO remove main function
-@hydra.main(config_path=str(CONFIG_PATH), version_base=None, config_name="instanovo")
+@hydra.main(config_path=str(CONFIG_PATH), version_base=None, config_name="instanovo_marg")
 def main(config: DictConfig) -> None:
     """Train the model."""
     logger.info("Initializing training.")

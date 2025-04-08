@@ -13,9 +13,9 @@ from omegaconf import DictConfig
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from instanovo.__init__ import console
-from instanovo.constants import ANNOTATED_COLUMN, ANNOTATION_ERROR, MASS_SCALE, MAX_MASS
-from instanovo.inference import (
+from instanovo_marg.__init__ import console
+from instanovo_marg.constants import ANNOTATED_COLUMN, ANNOTATION_ERROR, MASS_SCALE, MAX_MASS
+from instanovo_marg.inference import (
     BeamSearchDecoder,
     Decoder,
     GreedyDecoder,
@@ -23,11 +23,11 @@ from instanovo.inference import (
     KnapsackBeamSearchDecoder,
     ScoredSequence,
 )
-from instanovo.transformer.dataset import SpectrumDataset, collate_batch
-from instanovo.transformer.model import InstaNovo
-from instanovo.utils import Metrics, SpectrumDataFrame, s3
-from instanovo.utils.colorlogging import ColorLog
-from instanovo.utils.device_handler import check_device
+from instanovo_marg.transformer.dataset import SpectrumDataset, collate_batch
+from instanovo_marg.transformer.model import instanovo_marg
+from instanovo_marg.utils import Metrics, SpectrumDataFrame, s3
+from instanovo_marg.utils.colorlogging import ColorLog
+from instanovo_marg.utils.device_handler import check_device
 
 logger = ColorLog(console, __name__).logger
 
@@ -36,7 +36,7 @@ CONFIG_PATH = Path(__file__).parent.parent / "configs" / "inference"
 
 def get_preds(
     config: DictConfig,
-    model: InstaNovo,
+    model: instanovo_marg,
     model_config: DictConfig,
 ) -> None:
     """Get predictions from a trained model."""
@@ -55,7 +55,7 @@ def get_preds(
     use_basic_logging = config.get("use_basic_logging", True)
     save_beams = config.get("save_beams", False)
     device = check_device(config=config)
-    logger.info(f"Using device: {device} for InstaNovo predictions")
+    logger.info(f"Using device: {device} for instanovo_marg predictions")
     fp16 = config.get("fp16", True)
 
     if fp16 and device.lower() == "cpu":
@@ -402,7 +402,7 @@ def get_preds(
             s3.upload(output_path, s3.convert_to_s3_output(output_path))
 
 
-def _setup_knapsack(model: InstaNovo) -> Knapsack:
+def _setup_knapsack(model: instanovo_marg) -> Knapsack:
     residue_masses = dict(model.residue_set.residue_masses.copy())
     negative_residues = [k for k, v in residue_masses.items() if v < 0]
     if len(negative_residues) > 0:
