@@ -102,4 +102,3 @@ for sub_name in sub_configs_list:
 logger.info(f"instanovo_marg+ training config:\n{OmegaConf.to_yaml(config)}")
 
 train_diffusion(config)
-

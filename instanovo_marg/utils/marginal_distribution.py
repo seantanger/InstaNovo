@@ -57,7 +57,7 @@ def get_marginal_distribution(sdf=None):
             "InstaDeepAI/ms_ninespecies_benchmark",
             is_annotated=True,
             shuffle=False,
-            split="test[:10%]",  
+            split="test[:10%]",
         )
     sequences = sdf.to_pandas()["sequence"].tolist()
 

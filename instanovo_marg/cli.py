@@ -220,7 +220,9 @@ def transformer_predict(
 
     logger.info(f"Loading instanovo_marg model {config.instanovo_model}")
     if config.instanovo_model in instanovo_marg.get_pretrained():
-        transformer_model, transformer_config = instanovo_marg.from_pretrained(config.instanovo_model)
+        transformer_model, transformer_config = instanovo_marg.from_pretrained(
+            config.instanovo_model
+        )
     else:
         transformer_model, transformer_config = instanovo_marg.load(config.instanovo_model)
 

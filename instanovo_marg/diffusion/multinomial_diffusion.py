@@ -276,7 +276,6 @@ class InstaNovoPlus(nn.Module):
         with models_json_path.open("r", encoding="utf-8") as f:
             models_config = json.load(f)
 
-
         if MODEL_TYPE not in models_config:
             return []
 

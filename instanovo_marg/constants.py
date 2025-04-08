@@ -15,6 +15,7 @@ MAX_SEQUENCE_LENGTH = 200
 
 DATA_PERCENTAGE = 0.1
 
+
 class PrecursorDimension(Enum):
     """Names corresponding to indices in the precursor tensor."""
 
