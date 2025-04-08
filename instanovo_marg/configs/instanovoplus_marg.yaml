@@ -9,7 +9,7 @@ tb_summarywriter: "./logs/instanovo/instanovplus-base"
 
 # Training parameters
 seed: 101
-warmup_iters: 10000
+warmup_iters: 1 #10000
 learning_rate: 5e-4
 weight_decay: 0
 train_batch_size: 32
@@ -43,8 +43,8 @@ verbose_loading: True # Verbose SDF logs when loading the dataset
 save_model: True
 model_save_folder_path: "checkpoints/instanovoplus-base.ckpt"
 ckpt_interval: 154
-train_from_scratch: False
-resume_checkpoint: "checkpoints/instanovoplus-v1.1.0-alpha.ckpt"
+train_from_scratch: True
+resume_checkpoint: # "checkpoints/instanovoplus-v1.1.0-alpha.ckpt"
 
 blacklist:
 
