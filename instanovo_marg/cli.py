@@ -67,12 +67,12 @@ instanovo_cli = typer.Typer(rich_markup_mode="rich", pretty_exceptions_enable=Fa
 instanovo_plus_cli = typer.Typer(rich_markup_mode="rich", pretty_exceptions_enable=False)
 combined_cli.add_typer(
     instanovo_cli,
-    name="transformer",
+    name="transformer_marg",
     help="Run predictions or train with only the transformer-based instanovo_marg model.",
 )
 combined_cli.add_typer(
     instanovo_plus_cli,
-    name="diffusion",
+    name="diffusion_marg",
     help="Run predictions or train with only the diffusion-based instanovo_marg+ model.",
 )
 combined_cli.add_typer(convert_to_sdf_app)
