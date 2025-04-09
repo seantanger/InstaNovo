@@ -9,7 +9,7 @@ tb_summarywriter: "./logs/instanovo/instanovplus-base"
 
 # Training parameters
 seed: 101
-warmup_iters: 10000
+warmup_iters: 10000 #1
 learning_rate: 5e-5
 weight_decay: 0
 train_batch_size: 32
@@ -29,8 +29,8 @@ tags:
   - nine_species
 
 # Training data parameters
-train_subset: 0.01
-valid_subset: 0.01
+train_subset: 0.001 #0.05
+valid_subset: 0.001
 val_check_interval: 0.2
 lazy_loading: True # Use lazy loading mode
 max_shard_size: 1_000_000 # Max data shard size for lazy loading, may influence shuffling mechanics
@@ -41,14 +41,14 @@ verbose_loading: True # Verbose SDF logs when loading the dataset
 
 # Checkpointing parameters
 save_model: True
-model_save_folder_path: "checkpoints/instanovoplus-base"
+model_save_folder_path: "checkpoints/instanovoplus-base.ckpt"
 ckpt_interval: 50000
 train_from_scratch: True
-resume_checkpoint:
+resume_checkpoint: # "checkpoints/instanovoplus-v1.1.0-alpha.ckpt"
 
 blacklist:
 
 device: auto
 fp16: True
 
-time_steps: 200
+time_steps: 20

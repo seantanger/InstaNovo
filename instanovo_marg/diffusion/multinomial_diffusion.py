@@ -410,8 +410,6 @@ class InstaNovoPlus(nn.Module):
         )
         self.transition_model.head[1] = nn.Linear(model_dim, num_residues)
 
-    def update_sdf(self, sdf):
-        self.sdf = sdf
 
     def mixture_categorical(
         self,
@@ -439,6 +437,9 @@ class InstaNovoPlus(nn.Module):
 
         amino_acid_dist = np.load("instanovo_marg/configs/amino_acid_distribution.npy").squeeze()
         amino_acid_dist_tensor = torch.tensor(amino_acid_dist, dtype=torch.float)
+        if amino_acid_dist_tensor.shape[0] != log_x.shape[2]:
+            print(amino_acid_dist_tensor.shape[0], log_x.shape[2])
+            raise ValueError("number of classes mismatched.")
         log_probs = amino_acid_dist_tensor.expand(log_x.shape[0], log_x.shape[1], log_x.shape[2])
         return torch.logaddexp(log_x + log_alpha, log_alpha_complement + log_probs)
 
@@ -540,7 +541,28 @@ class DiffusionLoss(nn.Module):
             torch.FloatTensor[1]:
                 The KL-divergence averaged over all but the final dimension.
         """
-        return (torch.exp(log_probs_first) * (log_probs_first - log_probs_second)).sum(-1).sum(-1)
+        epsilon = 1e-6
+        # Convert to probabilities
+        probs_first = torch.exp(log_probs_first)
+        probs_second = torch.exp(log_probs_second)
+
+        # Add smoothing
+        probs_first = probs_first + epsilon
+        probs_second = probs_second + epsilon
+
+        # Re-normalize
+        probs_first = probs_first / probs_first.sum(dim=-1, keepdim=True)
+        probs_second = probs_second / probs_second.sum(dim=-1, keepdim=True)
+
+        # Compute log-probabilities
+        log_probs_first = torch.log(probs_first)
+        log_probs_second = torch.log(probs_second)
+
+        # KL divergence formula
+        kl = (probs_first * (log_probs_first - log_probs_second)).sum(-1).sum(-1)
+
+        return kl
+        # return (torch.exp(log_probs_first) * (log_probs_first - log_probs_second)).sum(-1).sum(-1)
 
     def forward(
         self, x_0: Integer[Peptide, "batch token"], **kwargs: dict
@@ -560,7 +582,6 @@ class DiffusionLoss(nn.Module):
 
         # 2. Compute L_t
         loss = self._compute_loss(t=t, x_0=x_0, **kwargs).mean()
-
         # 3. Calculate prior KL term
         log_x_0 = torch.log(one_hot(x_0, num_classes=len(self.model.residues)))
         final_log_probs = self.model.mixture_categorical(
@@ -572,8 +593,11 @@ class DiffusionLoss(nn.Module):
             .unsqueeze(-1)
             .unsqueeze(-1),
         )
-        uniform_log_probs = torch.log(torch.ones_like(final_log_probs) / len(self.model.residues))
-        kl_loss = self.kl_divergence(final_log_probs, uniform_log_probs).mean()
+        import numpy as np
+        # uniform_log_probs = torch.log(torch.ones_like(final_log_probs) / len(self.model.residues))
+        amino_acid_dist = np.load("instanovo_marg/configs/amino_acid_distribution.npy").squeeze()
+        target_log_probs = torch.tensor(amino_acid_dist, dtype=torch.float)
+        kl_loss = self.kl_divergence(final_log_probs, target_log_probs).mean()
         return loss + kl_loss
 
     def _compute_loss(
@@ -597,7 +621,6 @@ class DiffusionLoss(nn.Module):
         log_dist = self.model.reverse_distribution(x_t=x_next, time=t, **kwargs)
 
         nll_loss = -(one_hot(x_0, num_classes=len(self.model.residues)) * log_dist).sum(-1).sum(-1)
-
         log_posterior = self.model(
             log_x_0=log_x_0, log_x_t=torch.log(one_hot(x_next, log_probs.size(-1))), t=t
         )
