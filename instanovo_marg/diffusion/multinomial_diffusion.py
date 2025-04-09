@@ -410,7 +410,6 @@ class InstaNovoPlus(nn.Module):
         )
         self.transition_model.head[1] = nn.Linear(model_dim, num_residues)
 
-
     def mixture_categorical(
         self,
         log_x: Float[ResidueLogProbabilities, "batch token"],
@@ -437,9 +436,6 @@ class InstaNovoPlus(nn.Module):
 
         amino_acid_dist = np.load("instanovo_marg/configs/amino_acid_distribution.npy").squeeze()
         amino_acid_dist_tensor = torch.tensor(amino_acid_dist, dtype=torch.float)
-        if amino_acid_dist_tensor.shape[0] != log_x.shape[2]:
-            print(amino_acid_dist_tensor.shape[0], log_x.shape[2])
-            raise ValueError("number of classes mismatched.")
         log_probs = amino_acid_dist_tensor.expand(log_x.shape[0], log_x.shape[1], log_x.shape[2])
         return torch.logaddexp(log_x + log_alpha, log_alpha_complement + log_probs)
 
@@ -594,6 +590,7 @@ class DiffusionLoss(nn.Module):
             .unsqueeze(-1),
         )
         import numpy as np
+
         # uniform_log_probs = torch.log(torch.ones_like(final_log_probs) / len(self.model.residues))
         amino_acid_dist = np.load("instanovo_marg/configs/amino_acid_distribution.npy").squeeze()
         target_log_probs = torch.tensor(amino_acid_dist, dtype=torch.float)

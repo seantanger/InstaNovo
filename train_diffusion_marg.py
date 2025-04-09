@@ -2,8 +2,9 @@ import sys
 import warnings
 from pathlib import Path
 from typing import List, Optional
-import yaml
+
 import torch
+import yaml
 from hydra import compose, initialize
 from omegaconf import DictConfig, OmegaConf, open_dict
 
@@ -81,8 +82,6 @@ if config["n_gpu"] > 1:
     raise ValueError("n_gpu > 1 currently not supported.")
 
 
-
-
 logger.info("Initializing instanovo_marg+ training.")
 logger.info(f"Python version: {sys.version}")
 logger.info(f"PyTorch version: {torch.__version__}")
@@ -99,17 +98,14 @@ for sub_name in sub_configs_list:
             config.update(temp)
 
 
-    
-
 logger.info(f"instanovo_marg+ training config:\n{OmegaConf.to_yaml(config)}")
 
-with open(f'{config_path}/{config_name}.yaml', 'r') as file:
+with open(f"{config_path}/{config_name}.yaml", "r") as file:
     config_tmp = yaml.safe_load(file)
 
 
-residues = config_tmp.get('defaults', {})[3]['residues']
+residues = config_tmp.get("defaults", {})[3]["residues"]
 
-get_marginal_distribution(pretrain = residues=='extended_unimod')
-
+get_marginal_distribution()
 
 train_diffusion(config)

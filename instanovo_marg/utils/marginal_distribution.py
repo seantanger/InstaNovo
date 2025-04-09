@@ -5,30 +5,32 @@ import numpy as np
 import pandas as pd
 
 
-def get_marginal_distribution(sdf=None, vocab = None, pretrain = False):
+def get_marginal_distribution(sdf: Optional[SpectrumDataFrame] = None, 
+                              vocab: Optional[Dict] = None, 
+                              pretrain: bool = False) -> np.ndarray:
     """
-    Compute the marginal amino acid distribution from an InstaNovo SpectrumDataFrame.
-    Saves the result as a 27x1 numpy array of token counts.
+        Compute the marginal amino acid distribution from an InstaNovo SpectrumDataFrame.
+        Saves the result as a 27x1 numpy array of token counts.
     """
     if pretrain:
         # Define vocab (amino acids and modifications)
         vocab1 = {
-        "M(ox)": "M[UNIMOD:35]",
-        "M(+15.99)": "M[UNIMOD:35]",
-        "S(p)": "S[UNIMOD:21]", # Phosphorylation
-        "T(p)": "T[UNIMOD:21]",
-        "Y(p)": "Y[UNIMOD:21]",
-        "S(+79.97)": "S[UNIMOD:21]",
-        "T(+79.97)": "T[UNIMOD:21]",
-        "Y(+79.97)": "Y[UNIMOD:21]",
-        "Q(+0.98)": "Q[UNIMOD:7]", # Deamidation
-        "N(+0.98)": "N[UNIMOD:7]",
-        "Q(+.98)": "Q[UNIMOD:7]",
-        "N(+.98)": "N[UNIMOD:7]",
-        "C(+57.02)": "C[UNIMOD:4]", # Carboxyamidomethylation
-        "(+42.01)": "[UNIMOD:1]", # Acetylation
-        "(+43.01)": "[UNIMOD:5]", # Carbamylation
-        "(-17.03)": "[UNIMOD:385]"
+            "M(ox)": "M[UNIMOD:35]",
+            "M(+15.99)": "M[UNIMOD:35]",
+            "S(p)": "S[UNIMOD:21]",
+            "T(p)": "T[UNIMOD:21]",
+            "Y(p)": "Y[UNIMOD:21]",
+            "S(+79.97)": "S[UNIMOD:21]",
+            "T(+79.97)": "T[UNIMOD:21]",
+            "Y(+79.97)": "Y[UNIMOD:21]",
+            "Q(+0.98)": "Q[UNIMOD:7]",
+            "N(+0.98)": "N[UNIMOD:7]",
+            "Q(+.98)": "Q[UNIMOD:7]",
+            "N(+.98)": "N[UNIMOD:7]",
+            "C(+57.02)": "C[UNIMOD:4]",  
+            "(+42.01)": "[UNIMOD:1]", 
+            "(+43.01)": "[UNIMOD:5]", 
+            "(-17.03)": "[UNIMOD:385]",
         }
 
         # Define vocab2 (standard amino acids and special tokens)
@@ -61,16 +63,19 @@ def get_marginal_distribution(sdf=None, vocab = None, pretrain = False):
         # Combine vocab and vocab2
         vocab = set(vocab2.values()) | set(vocab1.keys())
 
-        residues_keys = {0: '[PAD]', 1: '[SOS]', 2: '[EOS]', 3: 'G', 4: 'A', 5: 'S', 6: 'P', 7: 'V', 8: 'T', 9: 'C',
-                    10: 'L', 11: 'I', 12: 'N', 13: 'D', 14: 'Q', 15: 'K', 16: 'E', 17: 'M', 18: 'H', 19: 'F', 20: 'R',
-                    21: 'Y', 22: 'W', 23: 'M[UNIMOD:35]', 24: 'C[UNIMOD:4]', 25: 'N[UNIMOD:7]', 26: 'Q[UNIMOD:7]', 27:
-                    'S[UNIMOD:21]', 28: 'T[UNIMOD:21]', 29: 'Y[UNIMOD:21]', 30: '[UNIMOD:1]', 31: '[UNIMOD:5]', 32:
-                    '[UNIMOD:385]'}
+        residues_keys = {
+    0: '[PAD]', 1: '[SOS]', 2: '[EOS]', 3: 'G', 4: 'A', 5: 'S', 6: 'P', 7: 'V', 8: 'T', 9: 'C',
+    10: 'L', 11: 'I', 12: 'N', 13: 'D', 14: 'Q', 15: 'K', 16: 'E', 17: 'M', 18: 'H', 19: 'F',
+    20: 'R', 21: 'Y', 22: 'W', 23: 'M[UNIMOD:35]', 24: 'C[UNIMOD:4]', 25: 'N[UNIMOD:7]',
+    26: 'Q[UNIMOD:7]', 27: 'S[UNIMOD:21]', 28: 'T[UNIMOD:21]', 29: 'Y[UNIMOD:21]',
+    30: '[UNIMOD:1]', 31: '[UNIMOD:5]', 32: '[UNIMOD:385]'
+}
+
         # Reverse vocab for token lookup (to map from amino acid to index)
         aa_to_idx = {aa: idx for idx, aa in enumerate(vocab)}
 
         # Define valid amino acids (including modified amino acids)
-        valid_aas = vocab 
+        valid_aas = vocab
 
         # Regex pattern to match standard AAs and modified ones like M(+15.99)
         aa_pattern = re.compile(r"[A-Z](?:\(\+\d+(?:\.\d+)?\))?")
@@ -85,11 +90,11 @@ def get_marginal_distribution(sdf=None, vocab = None, pretrain = False):
                 "InstaDeepAI/ms_ninespecies_benchmark",
                 is_annotated=True,
                 shuffle=False,
-                split="test[:100%]",  # Let's only use a subset of the test data for faster inference in this notebook
+                split="test[:100%]", 
             )
 
         # Process each sequence (here, I assume you already have the sequences in `sdf`)
-        sequences = sdf.to_pandas()['sequence']
+        sequences = sdf.to_pandas()["sequence"]
 
         # Process sequences and count amino acids
         for seq in sequences:
@@ -111,28 +116,29 @@ def get_marginal_distribution(sdf=None, vocab = None, pretrain = False):
         # Convert the full counts to a DataFrame
         aa_counts_df = pd.DataFrame(full_counts.items(), columns=["Amino Acid", "Count"])
 
-        aa_counts_df['Converted Amino Acid'] = aa_counts_df['Amino Acid'].map(vocab1).fillna(aa_counts_df['Amino Acid'])
-        aa_counts_df['Converted Amino Acid'] = pd.Categorical(aa_counts_df['Converted Amino Acid'], 
-                                                            categories=residues_keys, 
-                                                            ordered=True)
-        aa_counts_df.drop(columns = ['Amino Acid'], inplace= True)
+        aa_counts_df["Converted Amino Acid"] = (
+            aa_counts_df["Amino Acid"].map(vocab1).fillna(aa_counts_df["Amino Acid"])
+        )
+        aa_counts_df["Converted Amino Acid"] = pd.Categorical(
+            aa_counts_df["Converted Amino Acid"], 
+            categories=residues_keys, ordered=True
+        )
+        aa_counts_df.drop(columns=["Amino Acid"], inplace=True)
 
-        aa_counts_df = aa_counts_df.groupby('Converted Amino Acid').sum().reset_index()
+        aa_counts_df = aa_counts_df.groupby("Converted Amino Acid").sum().reset_index()
 
-
-
-            
         distributions = np.zeros(len(residues_keys))
         for idx, aa_name in residues_keys.items():
-            # Check if the amino acid is present in the 'Converted Amino Acid' column of aa_counts_df
-            if aa_name in aa_counts_df['Converted Amino Acid'].values:
+            if aa_name in aa_counts_df["Converted Amino Acid"].values:
                 # Get the count for this amino acid
-                count = aa_counts_df[aa_counts_df['Converted Amino Acid'] == aa_name]['Count'].values[0]
+                count = aa_counts_df[aa_counts_df["Converted Amino Acid"] == aa_name][
+                    "Count"
+                ].values[0]
                 # Assign the count to the appropriate index in the distributions array
                 distributions[idx] = count
 
         distributions += 1e-6
-        distributions/=distributions.sum()
+        distributions /= distributions.sum()
         np.save("instanovo_marg/configs/amino_acid_distribution.npy", np.log(distributions))
     else:
         vocab = {
