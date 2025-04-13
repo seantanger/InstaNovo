@@ -1,3 +1,4 @@
+
 import re
 from collections import Counter
 
@@ -5,14 +6,15 @@ import numpy as np
 import pandas as pd
 
 
-def get_marginal_distribution(sdf: Optional[SpectrumDataFrame] = None, 
-                              vocab: Optional[Dict] = None, 
-                              pretrain: bool = False) -> np.ndarray:
+
+def get_marginal_distribution(sdf= None, 
+                              vocab=None, 
+                              extended_vocab=True):
     """
         Compute the marginal amino acid distribution from an InstaNovo SpectrumDataFrame.
         Saves the result as a 27x1 numpy array of token counts.
     """
-    if pretrain:
+    if extended_vocab:
         # Define vocab (amino acids and modifications)
         vocab1 = {
             "M(ox)": "M[UNIMOD:35]",
@@ -87,10 +89,10 @@ def get_marginal_distribution(sdf: Optional[SpectrumDataFrame] = None,
             from instanovo.utils import SpectrumDataFrame
 
             sdf = SpectrumDataFrame.from_huggingface(
-                "InstaDeepAI/ms_ninespecies_benchmark",
+                "InstaDeepAI/ms_proteometools",
                 is_annotated=True,
                 shuffle=False,
-                split="test[:100%]", 
+                split="train[:100%]", 
             )
 
         # Process each sequence (here, I assume you already have the sequences in `sdf`)
@@ -139,7 +141,7 @@ def get_marginal_distribution(sdf: Optional[SpectrumDataFrame] = None,
 
         distributions += 1e-6
         distributions /= distributions.sum()
-        np.save("instanovo_marg/configs/amino_acid_distribution.npy", np.log(distributions))
+        np.save("instanovo_marg/configs/amino_acid_distribution.npy", distributions)
     else:
         vocab = {
             0: "[PAD]",
@@ -188,7 +190,7 @@ def get_marginal_distribution(sdf: Optional[SpectrumDataFrame] = None,
             from instanovo.utils import SpectrumDataFrame
 
             sdf = SpectrumDataFrame.from_huggingface(
-                "InstaDeepAI/ms_ninespecies_benchmark",
+                "InstaDeepAI/ms_proteometools",
                 is_annotated=True,
                 shuffle=False,
                 split="train[:100%]",

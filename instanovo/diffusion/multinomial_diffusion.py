@@ -107,7 +107,7 @@ class InstaNovoPlus(nn.Module):
         ckpt_details: str,
         overwrite: bool = False,
         temp_dir: str = "",  # type: ignore
-        use_legacy_format: bool = True,  # TODO default to false post update
+        use_legacy_format: bool = False,  # TODO default to false post update
     ) -> None:
         """Save the model to a directory.
 
@@ -583,10 +583,8 @@ class DiffusionLoss(nn.Module):
             .unsqueeze(-1)
             .unsqueeze(-1),
         )
-
-        # print(log_x_0.shape)
-        # print(x_0)
         x_next = Categorical(logits=log_probs).sample()
+
         # 2. Calculate loss
         log_dist = self.model.reverse_distribution(x_t=x_next, time=t, **kwargs)
 

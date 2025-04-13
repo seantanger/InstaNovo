@@ -54,28 +54,8 @@ def compose_config(
 config = compose_config(
     config_path=config_path,
     config_name=config_name,
-    overrides=["model.dropout=0.1", "+optimizer.lr=0.0005"],
+    overrides=["model.dropout=0.1"],
 )
-
-
-sdf_train = SpectrumDataFrame.from_huggingface(
-    "InstaDeepAI/ms_ninespecies_benchmark",
-    is_annotated=True,
-    shuffle=False,
-    split="train",  # Let's only use a subset of the test data for faster inference in this notebook
-)
-
-sdf_train.write_ipc("data/new_schema/train.ipc")
-
-
-# Validation
-sdf_valid = SpectrumDataFrame.from_huggingface(
-    "InstaDeepAI/ms_ninespecies_benchmark",
-    is_annotated=True,
-    shuffle=False,
-    split="validation",  # Let's only use a subset of the test data for faster inference in this notebook
-)
-sdf_valid.write_ipc("data/new_schema/valid.ipc")
 
 
 if config["n_gpu"] > 1:
@@ -105,7 +85,8 @@ with open(f"{config_path}/{config_name}.yaml", "r") as file:
 
 
 residues = config_tmp.get("defaults", {})[3]["residues"]
+# sdf = 
 
-get_marginal_distribution()
+get_marginal_distribution(extended_vocab=True)
 
 train_diffusion(config)

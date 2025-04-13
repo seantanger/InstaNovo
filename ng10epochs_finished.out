@@ -1,0 +1,1217 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) CCconfig        6)  ucx/1.14.1         11) flexiblas/3.3.1
+  2) gentoo/2023     7)  libfabric/1.18.0   12) blis/0.9.0
+  3) gcccore/.12.3   8)  pmix/4.2.4         13) StdEnv/2023
+  4) gcc/12.3        9)  ucc/1.2.0
+  5) hwloc/2.9.1     10) openmpi/4.1.5
+[04/09/25 12:52:23] INFO     Reading config from 'configs' with name   cli.py:59
+                             'instanovoplus'.                                   
+[04/09/25 12:52:30] INFO     Initializing InstaNovo+ training.        cli.py:652
+                    INFO     Python version: 3.11.4 (main, Nov  4     cli.py:653
+                             2023, 03:43:13) [GCC 12.3.1 20230526]              
+                    INFO     PyTorch version: 2.4.1+cu124             cli.py:654
+                    INFO     CUDA version: 12.4                       cli.py:655
+                    INFO     InstaNovo+ training config:              cli.py:667
+                             tb_summarywriter:                                  
+                             ./logs/instanovo/instanovplus-base                 
+                             seed: 101                                          
+                             warmup_iters: 1000                                 
+                             learning_rate: 5.0e-05                             
+                             weight_decay: 0                                    
+                             train_batch_size: 32                               
+                             n_gpu: 1                                           
+                             gradient_clip_val: 5                               
+                             predict_batch_size: 32                             
+                             compile_model: true                                
+                             epochs: 10                                         
+                             num_sanity_val_steps: 10                           
+                             console_logging_steps: 2000                        
+                             tensorboard_logging_steps: 500                     
+                             report_to: null                                    
+                             run_name:                                          
+                             instanovoplus_nine_species_base                    
+                             tags:                                              
+                             - nine_species                                     
+                             train_subset: 1                                    
+                             valid_subset: 0.01                                 
+                             val_check_interval: 0.2                            
+                             lazy_loading: true                                 
+                             max_shard_size: 1000000                            
+                             preshuffle_shards: false                           
+                             perform_data_checks: true                          
+                             validate_precursor_mass: false                     
+                             verbose_loading: true                              
+                             save_model: true                                   
+                             model_save_folder_path:                            
+                             checkpoints/instanovoplus-base                     
+                             ckpt_interval: 10000                               
+                             train_from_scratch: true                           
+                             resume_checkpoint: null                            
+                             blacklist: null                                    
+                             device: auto                                       
+                             fp16: true                                         
+                             time_steps: 20                                     
+                             vocab_size: 33                                     
+                             layers: 12                                         
+                             dim: 768                                           
+                             nheads: 8                                          
+                             dropout: 0.1                                       
+                             attention_type: wavlm                              
+                             wav_encoder: wavlm                                 
+                             wavlm_num_bucket: 140                              
+                             wavlm_max_dist: 280                                
+                             dim_feedforward: 1024                              
+                             max_charge: 10                                     
+                             t_emb_dim: 768                                     
+                             t_emb_max_period: 10000                            
+                             cond_emb_dim: 768                                  
+                             drop_cond_prob: 0.1                                
+                             cond_cross_attn_layers:                            
+                             - 0                                                
+                             - 3                                                
+                             - 6                                                
+                             - 9                                                
+                             conv_pos: 256                                      
+                             conv_pos_groups: 32                                
+                             diffusion_type: multinomial                        
+                             diffusion_s: 0.008                                 
+                             pos_encoding: relative                             
+                             use_flash_attention: false                         
+                             conv_peak_encoder: false                           
+                             n_peaks: 200                                       
+                             min_mz: 50.0                                       
+                             max_mz: 2500.0                                     
+                             min_intensity: 0.01                                
+                             remove_precursor_tol: 2.0                          
+                             precursor_mass_tol: 50                             
+                             isotope_error_range:                               
+                             - 0                                                
+                             - 1                                                
+                             max_length: 40                                     
+                             use_shards: true                                   
+                             train_path: data/new_schema/train.ipc              
+                             valid_path: data/new_schema/valid.ipc              
+                             valid_subset_of_train: null                        
+                             source_type: ipc                                   
+                             residue_remapping:                                 
+                               M(ox): M(+15.99)                                 
+                             residues:                                          
+                               G: 57.021464                                     
+                               A: 71.037114                                     
+                               S: 87.032028                                     
+                               P: 97.052764                                     
+                               V: 99.068414                                     
+                               T: 101.04767                                     
+                               C: 103.009185                                    
+                               L: 113.084064                                    
+                               I: 113.084064                                    
+                               'N': 114.042927                                  
+                               D: 115.026943                                    
+                               Q: 128.058578                                    
+                               K: 128.094963                                    
+                               E: 129.042593                                    
+                               M: 131.040485                                    
+                               H: 137.058912                                    
+                               F: 147.068414                                    
+                               R: 156.101111                                    
+                               'Y': 163.063329                                  
+                               W: 186.079313                                    
+                               M[UNIMOD:35]: 147.0354                           
+                               C[UNIMOD:4]: 160.030649                          
+                               N[UNIMOD:7]: 115.026943                          
+                               Q[UNIMOD:7]: 129.042594                          
+                               S[UNIMOD:21]: 166.998028                         
+                               T[UNIMOD:21]: 181.01367                          
+                               Y[UNIMOD:21]: 243.029329                         
+                               '[UNIMOD:1]': 42.010565                          
+                               '[UNIMOD:5]': 43.005814                          
+                               '[UNIMOD:385]': -17.026549                       
+                                                                                
+                    INFO     Starting diffusion training            train.py:105
+                    INFO     Vocab: {0: '[PAD]', 1: '[SOS]', 2:     train.py:112
+                             '[EOS]', 3: 'G', 4: 'A', 5: 'S', 6:                
+                             'P', 7: 'V', 8: 'T', 9: 'C', 10: 'L',              
+                             11: 'I', 12: 'N', 13: 'D', 14: 'Q',                
+                             15: 'K', 16: 'E', 17: 'M', 18: 'H',                
+                             19: 'F', 20: 'R', 21: 'Y', 22: 'W',                
+                             23: 'M[UNIMOD:35]', 24: 'C[UNIMOD:4]',             
+                             25: 'N[UNIMOD:7]', 26: 'Q[UNIMOD:7]',              
+                             27: 'S[UNIMOD:21]', 28:                            
+                             'T[UNIMOD:21]', 29: 'Y[UNIMOD:21]',                
+                             30: '[UNIMOD:1]', 31: '[UNIMOD:5]',                
+                             32: '[UNIMOD:385]'}                                
+                    INFO     Loading data                           train.py:114
+                    INFO     Loading file 001 of 001:        data_handler.py:321
+                             data/new_schema/train.ipc                          
+[04/09/25 12:52:46] INFO     Saving temporary file to        data_handler.py:401
+                             /tmp/tmpwti6evyz/temp_c407b5131                    
+                             96c44b59e676d6d75edbcdf.parquet                    
+[04/09/25 12:52:47] INFO     Verifying loaded data           data_handler.py:401
+[04/09/25 12:52:50] INFO     Checking for unknown residues in       train.py:180
+                             527,974 rows.                                      
+[04/09/25 12:52:51] WARNING  Unsupported residues found in          train.py:187
+                             evaluation set! These rows will be                 
+                             dropped.                                           
+                    INFO     New residues found:                    train.py:190
+                             {'M(+15.99)', 'Q(+.98)', 'N(+.98)',                
+                             'C(+57.02)'}                                       
+                    INFO     Residues supported:                    train.py:191
+                             {'[UNIMOD:1]', 'Y[UNIMOD:21]', 'W',                
+                             '[SOS]', 'C', 'N', 'T', 'Q', 'K', 'V',             
+                             'L', 'M[UNIMOD:35]', 'P',                          
+                             'N[UNIMOD:7]', '[UNIMOD:5]', 'F',                  
+                             'T[UNIMOD:21]', 'M(ox)',                           
+                             'Q[UNIMOD:7]', 'C[UNIMOD:4]', 'E',                 
+                             'S[UNIMOD:21]', 'R', '[PAD]', '[EOS]',             
+                             'D', 'H', 'A', 'S', 'Y', 'M', 'G',                 
+                             '[UNIMOD:385]', 'I'}                               
+[04/09/25 12:52:58] WARNING  118,981 (23.82%) training rows         train.py:206
+                             dropped.                                           
+                    WARNING  7,651 (26.78%) validation rows         train.py:211
+                             dropped.                                           
+[04/09/25 12:53:06] INFO     Data loaded: 380,421 training samples; train.py:269
+                             200 validation samples                             
+                    INFO     Checking if any validation set         train.py:291
+                             overlaps with training set...                      
+                    INFO     No data leakage!                       train.py:296
+                    INFO     Model checkpointing every 0.84 epochs. train.py:311
+                    INFO     Updates per epoch: 11,889,             train.py:338
+                             step_scale=1.0                                     
+[04/09/25 12:53:31] INFO     Sample batch:                          train.py:342
+                    INFO      - spectra.shape=torch.Size([32, 200,  train.py:343
+                             2])                                                
+                    INFO      - precursors.shape=torch.Size([32,    train.py:344
+                             3])                                                
+                    INFO      - spectra_mask.shape=torch.Size([32,  train.py:345
+                             200])                                              
+                    INFO      - peptides.shape=torch.Size([32, 40]) train.py:346
+                    INFO      - peptides_mask.shape=torch.Size([32, train.py:347
+                             40])                                               
+                    INFO     Initializing model.                    train.py:355
+/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+[04/09/25 12:53:33] INFO     Model loaded with 172,584,193          train.py:438
+                             parameters                                         
+[04/09/25 12:53:34] INFO     Training InstaNovo+ on device: cuda    train.py:444
+[04/09/25 12:53:35] INFO     Initializing loss.                     train.py:465
+                    INFO     Initializing optimizer.                train.py:468
+                    INFO     Model saving enabled                   train.py:481
+                    INFO     Saving every 10000 training steps.     train.py:486
+                    INFO     InstaNovo+ training started.           train.py:491
+                    INFO     Training loop                          train.py:564
+/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/functional.py:5193: UserWarning: Support for mismatched key_padding_mask and attn_mask is deprecated. Use same type for both instead.
+  warnings.warn(
+[04/09/25 12:53:48] INFO     Validation loop.                       train.py:497
+[04/09/25 12:53:52] INFO     Epoch 0, Validation loss: 7.72         train.py:536
+                    INFO     aa_prec: 0.0027, aa_recall: 0.0049,    train.py:552
+                             pep_recall: 0.0000, aa_er: 1.7172                  
+[04/09/25 12:55:16] INFO     Epoch: 0, Global Step: 499, Training   train.py:609
+                             Loss: 2.08                                         
+[04/09/25 12:56:44] INFO     Epoch: 0, Global Step: 999, Training   train.py:609
+                             Loss: 2.36                                         
+[04/09/25 12:58:06] INFO     Epoch: 0, Global Step: 1499, Training  train.py:609
+                             Loss: 2.10                                         
+[04/09/25 12:59:30] INFO     Epoch: 0, Global Step: 1999, Training  train.py:609
+                             Loss: 2.14                                         
+                    INFO     [TRAIN] [Epoch 00/09 Step 001999]      train.py:621
+                             [Batch 02000/11889]                                
+                             [00:05:54/00:29:13, 0.177s/it]:                    
+                             train_loss_raw=2.1399,                             
+                             running_loss=2.0775, LR=0.000050                   
+[04/09/25 13:00:33] INFO     Validation loop.                       train.py:497
+[04/09/25 13:00:37] INFO     Epoch 0, Validation loss: 2.01         train.py:536
+                    INFO     aa_prec: 0.0101, aa_recall: 0.0084,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8923                  
+[04/09/25 13:00:56] INFO     Epoch: 0, Global Step: 2499, Training  train.py:609
+                             Loss: 1.90                                         
+[04/09/25 13:02:20] INFO     Epoch: 0, Global Step: 2999, Training  train.py:609
+                             Loss: 2.19                                         
+[04/09/25 13:03:40] INFO     Epoch: 0, Global Step: 3499, Training  train.py:609
+                             Loss: 1.79                                         
+[04/09/25 13:05:03] INFO     Epoch: 0, Global Step: 3999, Training  train.py:609
+                             Loss: 1.92                                         
+                    INFO     [TRAIN] [Epoch 00/09 Step 003999]      train.py:621
+                             [Batch 04000/11889]                                
+                             [00:11:28/00:22:38, 0.172s/it]:                    
+                             train_loss_raw=1.9237,                             
+                             running_loss=2.0567, LR=0.000050                   
+[04/09/25 13:06:26] INFO     Epoch: 0, Global Step: 4499, Training  train.py:609
+                             Loss: 1.65                                         
+[04/09/25 13:07:07] INFO     Validation loop.                       train.py:497
+[04/09/25 13:07:10] INFO     Epoch 0, Validation loss: 1.97         train.py:536
+                    INFO     aa_prec: 0.0106, aa_recall: 0.0095,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9039                  
+[04/09/25 13:07:53] INFO     Epoch: 0, Global Step: 4999, Training  train.py:609
+                             Loss: 1.84                                         
+[04/09/25 13:09:13] INFO     Epoch: 0, Global Step: 5499, Training  train.py:609
+                             Loss: 2.03                                         
+[04/09/25 13:10:36] INFO     Epoch: 0, Global Step: 5999, Training  train.py:609
+                             Loss: 1.99                                         
+                    INFO     [TRAIN] [Epoch 00/09 Step 005999]      train.py:621
+                             [Batch 06000/11889]                                
+                             [00:17:01/00:16:42, 0.170s/it]:                    
+                             train_loss_raw=1.9946,                             
+                             running_loss=2.0455, LR=0.000050                   
+[04/09/25 13:11:59] INFO     Epoch: 0, Global Step: 6499, Training  train.py:609
+                             Loss: 1.76                                         
+[04/09/25 13:13:23] INFO     Epoch: 0, Global Step: 6999, Training  train.py:609
+                             Loss: 1.79                                         
+[04/09/25 13:13:43] INFO     Validation loop.                       train.py:497
+[04/09/25 13:13:47] INFO     Epoch 0, Validation loss: 2.09         train.py:536
+                    INFO     aa_prec: 0.0085, aa_recall: 0.0074,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9028                  
+[04/09/25 13:14:49] INFO     Epoch: 0, Global Step: 7499, Training  train.py:609
+                             Loss: 1.46                                         
+[04/09/25 13:16:11] INFO     Epoch: 0, Global Step: 7999, Training  train.py:609
+                             Loss: 2.50                                         
+                    INFO     [TRAIN] [Epoch 00/09 Step 007999]      train.py:621
+                             [Batch 08000/11889]                                
+                             [00:22:36/00:10:59, 0.170s/it]:                    
+                             train_loss_raw=2.5021,                             
+                             running_loss=2.0709, LR=0.000050                   
+[04/09/25 13:17:35] INFO     Epoch: 0, Global Step: 8499, Training  train.py:609
+                             Loss: 2.31                                         
+[04/09/25 13:18:58] INFO     Epoch: 0, Global Step: 8999, Training  train.py:609
+                             Loss: 2.48                                         
+[04/09/25 13:20:21] INFO     Epoch: 0, Global Step: 9499, Training  train.py:609
+                             Loss: 1.67                                         
+[04/09/25 13:20:22] INFO     Validation loop.                       train.py:497
+[04/09/25 13:20:26] INFO     Epoch 0, Validation loss: 2.08         train.py:536
+[04/09/25 13:20:27] INFO     aa_prec: 0.0094, aa_recall: 0.0063,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8586                  
+[04/09/25 13:21:48] INFO     Epoch: 0, Global Step: 9999, Training  train.py:609
+                             Loss: 1.84                                         
+                    INFO     [TRAIN] [Epoch 00/09 Step 009999]      train.py:621
+                             [Batch 10000/11889]                                
+                             [00:28:12/00:05:19, 0.169s/it]:                    
+                             train_loss_raw=1.8416,                             
+                             running_loss=2.0578, LR=0.000050                   
+                    INFO     Saving model epoch_0_step_9999.        train.py:646
+[04/09/25 13:21:49] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 13:23:12] INFO     Epoch: 0, Global Step: 10499, Training train.py:609
+                             Loss: 2.57                                         
+[04/09/25 13:24:34] INFO     Epoch: 0, Global Step: 10999, Training train.py:609
+                             Loss: 2.06                                         
+[04/09/25 13:25:57] INFO     Epoch: 0, Global Step: 11499, Training train.py:609
+                             Loss: 2.38                                         
+[04/09/25 13:27:05] INFO     Training loop                          train.py:564
+                    INFO     Validation loop.                       train.py:497
+[04/09/25 13:27:08] INFO     Epoch 1, Validation loss: 1.92         train.py:536
+[04/09/25 13:27:09] INFO     aa_prec: 0.0097, aa_recall: 0.0102,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9719                  
+[04/09/25 13:27:30] INFO     Epoch: 1, Global Step: 11999, Training train.py:609
+                             Loss: 2.46                                         
+                    INFO     [TRAIN] [Epoch 01/09 Step 011999]      train.py:621
+                             [Batch 00111/11889]                                
+                             [00:00:25/00:44:19, 0.226s/it]:                    
+                             train_loss_raw=2.4564,                             
+                             running_loss=2.0476, LR=0.000050                   
+[04/09/25 13:28:53] INFO     Epoch: 1, Global Step: 12499, Training train.py:609
+                             Loss: 1.70                                         
+[04/09/25 13:30:16] INFO     Epoch: 1, Global Step: 12999, Training train.py:609
+                             Loss: 2.17                                         
+[04/09/25 13:31:34] INFO     Epoch: 1, Global Step: 13499, Training train.py:609
+                             Loss: 2.33                                         
+[04/09/25 13:32:58] INFO     Epoch: 1, Global Step: 13999, Training train.py:609
+                             Loss: 1.94                                         
+                    INFO     [TRAIN] [Epoch 01/09 Step 013999]      train.py:621
+                             [Batch 02111/11889]                                
+                             [00:05:52/00:27:12, 0.167s/it]:                    
+                             train_loss_raw=1.9352,                             
+                             running_loss=2.0503, LR=0.000050                   
+[04/09/25 13:33:45] INFO     Validation loop.                       train.py:497
+[04/09/25 13:33:48] INFO     Epoch 1, Validation loss: 2.08         train.py:536
+[04/09/25 13:33:49] INFO     aa_prec: 0.0085, aa_recall: 0.0074,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9056                  
+[04/09/25 13:34:25] INFO     Epoch: 1, Global Step: 14499, Training train.py:609
+                             Loss: 1.72                                         
+[04/09/25 13:35:48] INFO     Epoch: 1, Global Step: 14999, Training train.py:609
+                             Loss: 1.84                                         
+[04/09/25 13:37:11] INFO     Epoch: 1, Global Step: 15499, Training train.py:609
+                             Loss: 1.96                                         
+[04/09/25 13:38:34] INFO     Epoch: 1, Global Step: 15999, Training train.py:609
+                             Loss: 2.25                                         
+                    INFO     [TRAIN] [Epoch 01/09 Step 015999]      train.py:621
+                             [Batch 04111/11889]                                
+                             [00:11:29/00:21:43, 0.168s/it]:                    
+                             train_loss_raw=2.2496,                             
+                             running_loss=2.0183, LR=0.000050                   
+[04/09/25 13:39:57] INFO     Epoch: 1, Global Step: 16499, Training train.py:609
+                             Loss: 2.00                                         
+[04/09/25 13:40:25] INFO     Validation loop.                       train.py:497
+[04/09/25 13:40:28] INFO     Epoch 1, Validation loss: 1.93         train.py:536
+                    INFO     aa_prec: 0.0071, aa_recall: 0.0063,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9147                  
+[04/09/25 13:41:27] INFO     Epoch: 1, Global Step: 16999, Training train.py:609
+                             Loss: 2.02                                         
+[04/09/25 13:42:48] INFO     Epoch: 1, Global Step: 17499, Training train.py:609
+                             Loss: 1.84                                         
+[04/09/25 13:44:12] INFO     Epoch: 1, Global Step: 17999, Training train.py:609
+                             Loss: 2.28                                         
+                    INFO     [TRAIN] [Epoch 01/09 Step 017999]      train.py:621
+                             [Batch 06111/11889]                                
+                             [00:17:07/00:16:11, 0.168s/it]:                    
+                             train_loss_raw=2.2807,                             
+                             running_loss=2.0443, LR=0.000050                   
+[04/09/25 13:45:35] INFO     Epoch: 1, Global Step: 18499, Training train.py:609
+                             Loss: 2.30                                         
+[04/09/25 13:46:58] INFO     Epoch: 1, Global Step: 18999, Training train.py:609
+                             Loss: 1.85                                         
+[04/09/25 13:47:01] INFO     Validation loop.                       train.py:497
+[04/09/25 13:47:04] INFO     Epoch 1, Validation loss: 1.94         train.py:536
+[04/09/25 13:47:05] INFO     aa_prec: 0.0064, aa_recall: 0.0063,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9568                  
+[04/09/25 13:48:23] INFO     Epoch: 1, Global Step: 19499, Training train.py:609
+                             Loss: 2.12                                         
+[04/09/25 13:49:45] INFO     Epoch: 1, Global Step: 19999, Training train.py:609
+                             Loss: 1.65                                         
+                    INFO     [TRAIN] [Epoch 01/09 Step 019999]      train.py:621
+                             [Batch 08111/11889]                                
+                             [00:22:40/00:10:33, 0.168s/it]:                    
+                             train_loss_raw=1.6477,                             
+                             running_loss=2.0486, LR=0.000050                   
+                    INFO     Saving model epoch_1_step_19999.       train.py:646
+[04/09/25 13:49:47] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 13:51:10] INFO     Epoch: 1, Global Step: 20499, Training train.py:609
+                             Loss: 1.86                                         
+[04/09/25 13:52:32] INFO     Epoch: 1, Global Step: 20999, Training train.py:609
+                             Loss: 1.66                                         
+[04/09/25 13:53:37] INFO     Validation loop.                       train.py:497
+[04/09/25 13:53:40] INFO     Epoch 1, Validation loss: 2.18         train.py:536
+                    INFO     aa_prec: 0.0076, aa_recall: 0.0074,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9344                  
+[04/09/25 13:53:55] INFO     Epoch: 1, Global Step: 21499, Training train.py:609
+                             Loss: 1.66                                         
+[04/09/25 13:55:18] INFO     Epoch: 1, Global Step: 21999, Training train.py:609
+                             Loss: 2.02                                         
+                    INFO     [TRAIN] [Epoch 01/09 Step 021999]      train.py:621
+                             [Batch 10111/11889]                                
+                             [00:28:12/00:04:57, 0.167s/it]:                    
+                             train_loss_raw=2.0231,                             
+                             running_loss=2.0442, LR=0.000050                   
+[04/09/25 13:56:40] INFO     Epoch: 1, Global Step: 22499, Training train.py:609
+                             Loss: 1.95                                         
+[04/09/25 13:58:02] INFO     Epoch: 1, Global Step: 22999, Training train.py:609
+                             Loss: 2.23                                         
+[04/09/25 13:59:24] INFO     Epoch: 1, Global Step: 23499, Training train.py:609
+                             Loss: 2.21                                         
+[04/09/25 14:00:11] INFO     Training loop                          train.py:564
+                    INFO     Validation loop.                       train.py:497
+[04/09/25 14:00:15] INFO     Epoch 2, Validation loss: 2.11         train.py:536
+                    INFO     aa_prec: 0.0049, aa_recall: 0.0053,    train.py:552
+                             pep_recall: 0.0000, aa_er: 1.0140                  
+[04/09/25 14:00:51] INFO     Epoch: 2, Global Step: 23999, Training train.py:609
+                             Loss: 1.75                                         
+                    INFO     [TRAIN] [Epoch 02/09 Step 023999]      train.py:621
+                             [Batch 00222/11889]                                
+                             [00:00:40/00:35:09, 0.181s/it]:                    
+                             train_loss_raw=1.7527,                             
+                             running_loss=2.0095, LR=0.000050                   
+[04/09/25 14:02:13] INFO     Epoch: 2, Global Step: 24499, Training train.py:609
+                             Loss: 1.31                                         
+[04/09/25 14:03:34] INFO     Epoch: 2, Global Step: 24999, Training train.py:609
+                             Loss: 2.35                                         
+[04/09/25 14:04:55] INFO     Epoch: 2, Global Step: 25499, Training train.py:609
+                             Loss: 1.96                                         
+[04/09/25 14:06:17] INFO     Epoch: 2, Global Step: 25999, Training train.py:609
+                             Loss: 1.87                                         
+                    INFO     [TRAIN] [Epoch 02/09 Step 025999]      train.py:621
+                             [Batch 02222/11889]                                
+                             [00:06:06/00:26:36, 0.165s/it]:                    
+                             train_loss_raw=1.8667,                             
+                             running_loss=2.0163, LR=0.000050                   
+[04/09/25 14:06:45] INFO     Validation loop.                       train.py:497
+[04/09/25 14:06:48] INFO     Epoch 2, Validation loss: 2.04         train.py:536
+[04/09/25 14:06:49] INFO     aa_prec: 0.0108, aa_recall: 0.0095,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9179                  
+[04/09/25 14:07:42] INFO     Epoch: 2, Global Step: 26499, Training train.py:609
+                             Loss: 2.03                                         
+[04/09/25 14:09:04] INFO     Epoch: 2, Global Step: 26999, Training train.py:609
+                             Loss: 2.11                                         
+[04/09/25 14:10:27] INFO     Epoch: 2, Global Step: 27499, Training train.py:609
+                             Loss: 1.71                                         
+[04/09/25 14:11:49] INFO     Epoch: 2, Global Step: 27999, Training train.py:609
+                             Loss: 2.12                                         
+                    INFO     [TRAIN] [Epoch 02/09 Step 027999]      train.py:621
+                             [Batch 04222/11889]                                
+                             [00:11:38/00:21:08, 0.166s/it]:                    
+                             train_loss_raw=2.1192,                             
+                             running_loss=2.0767, LR=0.000050                   
+[04/09/25 14:13:09] INFO     Epoch: 2, Global Step: 28499, Training train.py:609
+                             Loss: 1.57                                         
+[04/09/25 14:13:15] INFO     Validation loop.                       train.py:497
+[04/09/25 14:13:18] INFO     Epoch 2, Validation loss: 1.97         train.py:536
+                    INFO     aa_prec: 0.0082, aa_recall: 0.0074,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9189                  
+[04/09/25 14:14:36] INFO     Epoch: 2, Global Step: 28999, Training train.py:609
+                             Loss: 1.61                                         
+[04/09/25 14:16:01] INFO     Epoch: 2, Global Step: 29499, Training train.py:609
+                             Loss: 2.26                                         
+[04/09/25 14:17:19] INFO     Epoch: 2, Global Step: 29999, Training train.py:609
+                             Loss: 1.91                                         
+                    INFO     [TRAIN] [Epoch 02/09 Step 029999]      train.py:621
+                             [Batch 06222/11889]                                
+                             [00:17:08/00:15:36, 0.165s/it]:                    
+                             train_loss_raw=1.9084,                             
+                             running_loss=2.0391, LR=0.000050                   
+                    INFO     Saving model epoch_2_step_29999.       train.py:646
+[04/09/25 14:17:21] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 14:18:42] INFO     Epoch: 2, Global Step: 30499, Training train.py:609
+                             Loss: 2.13                                         
+[04/09/25 14:19:51] INFO     Validation loop.                       train.py:497
+[04/09/25 14:19:55] INFO     Epoch 2, Validation loss: 1.97         train.py:536
+                    INFO     aa_prec: 0.0067, aa_recall: 0.0063,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9309                  
+[04/09/25 14:20:08] INFO     Epoch: 2, Global Step: 30999, Training train.py:609
+                             Loss: 2.14                                         
+[04/09/25 14:21:31] INFO     Epoch: 2, Global Step: 31499, Training train.py:609
+                             Loss: 1.91                                         
+[04/09/25 14:22:51] INFO     Epoch: 2, Global Step: 31999, Training train.py:609
+                             Loss: 1.80                                         
+                    INFO     [TRAIN] [Epoch 02/09 Step 031999]      train.py:621
+                             [Batch 08222/11889]                                
+                             [00:22:40/00:10:06, 0.165s/it]:                    
+                             train_loss_raw=1.7997,                             
+                             running_loss=2.0253, LR=0.000050                   
+[04/09/25 14:24:15] INFO     Epoch: 2, Global Step: 32499, Training train.py:609
+                             Loss: 2.43                                         
+[04/09/25 14:25:34] INFO     Epoch: 2, Global Step: 32999, Training train.py:609
+                             Loss: 1.86                                         
+[04/09/25 14:26:21] INFO     Validation loop.                       train.py:497
+[04/09/25 14:26:24] INFO     Epoch 2, Validation loss: 2.03         train.py:536
+[04/09/25 14:26:25] INFO     aa_prec: 0.0062, aa_recall: 0.0060,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9351                  
+[04/09/25 14:26:59] INFO     Epoch: 2, Global Step: 33499, Training train.py:609
+                             Loss: 2.26                                         
+[04/09/25 14:28:22] INFO     Epoch: 2, Global Step: 33999, Training train.py:609
+                             Loss: 2.25                                         
+                    INFO     [TRAIN] [Epoch 02/09 Step 033999]      train.py:621
+                             [Batch 10222/11889]                                
+                             [00:28:11/00:04:35, 0.165s/it]:                    
+                             train_loss_raw=2.2510,                             
+                             running_loss=2.0044, LR=0.000050                   
+[04/09/25 14:29:42] INFO     Epoch: 2, Global Step: 34499, Training train.py:609
+                             Loss: 2.43                                         
+[04/09/25 14:31:03] INFO     Epoch: 2, Global Step: 34999, Training train.py:609
+                             Loss: 2.33                                         
+[04/09/25 14:32:27] INFO     Epoch: 2, Global Step: 35499, Training train.py:609
+                             Loss: 2.09                                         
+[04/09/25 14:32:56] INFO     Training loop                          train.py:564
+                    INFO     Validation loop.                       train.py:497
+[04/09/25 14:32:59] INFO     Epoch 3, Validation loss: 1.99         train.py:536
+[04/09/25 14:33:00] INFO     aa_prec: 0.0109, aa_recall: 0.0091,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8919                  
+[04/09/25 14:33:56] INFO     Epoch: 3, Global Step: 35999, Training train.py:609
+                             Loss: 1.77                                         
+                    INFO     [TRAIN] [Epoch 03/09 Step 035999]      train.py:621
+                             [Batch 00333/11889]                                
+                             [00:01:00/00:34:44, 0.180s/it]:                    
+                             train_loss_raw=1.7733,                             
+                             running_loss=2.0142, LR=0.000050                   
+[04/09/25 14:35:16] INFO     Epoch: 3, Global Step: 36499, Training train.py:609
+                             Loss: 1.88                                         
+[04/09/25 14:36:40] INFO     Epoch: 3, Global Step: 36999, Training train.py:609
+                             Loss: 2.44                                         
+[04/09/25 14:38:00] INFO     Epoch: 3, Global Step: 37499, Training train.py:609
+                             Loss: 1.79                                         
+[04/09/25 14:39:21] INFO     Epoch: 3, Global Step: 37999, Training train.py:609
+                             Loss: 2.11                                         
+                    INFO     [TRAIN] [Epoch 03/09 Step 037999]      train.py:621
+                             [Batch 02333/11889]                                
+                             [00:06:25/00:26:19, 0.165s/it]:                    
+                             train_loss_raw=2.1074,                             
+                             running_loss=2.0237, LR=0.000050                   
+[04/09/25 14:39:29] INFO     Validation loop.                       train.py:497
+[04/09/25 14:39:33] INFO     Epoch 3, Validation loss: 1.87         train.py:536
+                    INFO     aa_prec: 0.0116, aa_recall: 0.0098,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8982                  
+[04/09/25 14:40:47] INFO     Epoch: 3, Global Step: 38499, Training train.py:609
+                             Loss: 1.46                                         
+[04/09/25 14:42:09] INFO     Epoch: 3, Global Step: 38999, Training train.py:609
+                             Loss: 1.95                                         
+[04/09/25 14:43:31] INFO     Epoch: 3, Global Step: 39499, Training train.py:609
+                             Loss: 2.02                                         
+[04/09/25 14:44:51] INFO     Epoch: 3, Global Step: 39999, Training train.py:609
+                             Loss: 2.20                                         
+                    INFO     [TRAIN] [Epoch 03/09 Step 039999]      train.py:621
+                             [Batch 04333/11889]                                
+                             [00:11:55/00:20:48, 0.165s/it]:                    
+                             train_loss_raw=2.1974,                             
+                             running_loss=2.0286, LR=0.000050                   
+                    INFO     Saving model epoch_3_step_39999.       train.py:646
+[04/09/25 14:44:53] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 14:46:03] INFO     Validation loop.                       train.py:497
+[04/09/25 14:46:06] INFO     Epoch 3, Validation loss: 1.96         train.py:536
+                    INFO     aa_prec: 0.0083, aa_recall: 0.0063,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8719                  
+[04/09/25 14:46:19] INFO     Epoch: 3, Global Step: 40499, Training train.py:609
+                             Loss: 1.63                                         
+[04/09/25 14:47:41] INFO     Epoch: 3, Global Step: 40999, Training train.py:609
+                             Loss: 1.89                                         
+[04/09/25 14:49:03] INFO     Epoch: 3, Global Step: 41499, Training train.py:609
+                             Loss: 2.03                                         
+[04/09/25 14:50:24] INFO     Epoch: 3, Global Step: 41999, Training train.py:609
+                             Loss: 1.81                                         
+                    INFO     [TRAIN] [Epoch 03/09 Step 041999]      train.py:621
+                             [Batch 06333/11889]                                
+                             [00:17:28/00:15:20, 0.166s/it]:                    
+                             train_loss_raw=1.8123,                             
+                             running_loss=2.0366, LR=0.000050                   
+[04/09/25 14:51:45] INFO     Epoch: 3, Global Step: 42499, Training train.py:609
+                             Loss: 2.00                                         
+[04/09/25 14:52:36] INFO     Validation loop.                       train.py:497
+[04/09/25 14:52:39] INFO     Epoch 3, Validation loss: 2.26         train.py:536
+                    INFO     aa_prec: 0.0097, aa_recall: 0.0088,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9379                  
+[04/09/25 14:53:11] INFO     Epoch: 3, Global Step: 42999, Training train.py:609
+                             Loss: 1.78                                         
+[04/09/25 14:54:34] INFO     Epoch: 3, Global Step: 43499, Training train.py:609
+                             Loss: 1.75                                         
+[04/09/25 14:55:57] INFO     Epoch: 3, Global Step: 43999, Training train.py:609
+                             Loss: 2.11                                         
+                    INFO     [TRAIN] [Epoch 03/09 Step 043999]      train.py:621
+                             [Batch 08333/11889]                                
+                             [00:23:00/00:09:49, 0.166s/it]:                    
+                             train_loss_raw=2.1147,                             
+                             running_loss=2.0275, LR=0.000050                   
+[04/09/25 14:57:18] INFO     Epoch: 3, Global Step: 44499, Training train.py:609
+                             Loss: 2.20                                         
+[04/09/25 14:58:39] INFO     Epoch: 3, Global Step: 44999, Training train.py:609
+                             Loss: 2.16                                         
+[04/09/25 14:59:09] INFO     Validation loop.                       train.py:497
+[04/09/25 14:59:13] INFO     Epoch 3, Validation loss: 2.17         train.py:536
+                    INFO     aa_prec: 0.0113, aa_recall: 0.0102,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9084                  
+[04/09/25 15:00:05] INFO     Epoch: 3, Global Step: 45499, Training train.py:609
+                             Loss: 2.42                                         
+[04/09/25 15:01:27] INFO     Epoch: 3, Global Step: 45999, Training train.py:609
+                             Loss: 2.60                                         
+                    INFO     [TRAIN] [Epoch 03/09 Step 045999]      train.py:621
+                             [Batch 10333/11889]                                
+                             [00:28:30/00:04:17, 0.166s/it]:                    
+                             train_loss_raw=2.5964,                             
+                             running_loss=2.0313, LR=0.000050                   
+[04/09/25 15:02:48] INFO     Epoch: 3, Global Step: 46499, Training train.py:609
+                             Loss: 1.77                                         
+[04/09/25 15:04:10] INFO     Epoch: 3, Global Step: 46999, Training train.py:609
+                             Loss: 1.49                                         
+[04/09/25 15:05:31] INFO     Epoch: 3, Global Step: 47499, Training train.py:609
+                             Loss: 1.86                                         
+[04/09/25 15:05:42] INFO     Training loop                          train.py:564
+[04/09/25 15:05:43] INFO     Validation loop.                       train.py:497
+[04/09/25 15:05:46] INFO     Epoch 4, Validation loss: 2.11         train.py:536
+[04/09/25 15:05:47] INFO     aa_prec: 0.0075, aa_recall: 0.0067,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9105                  
+[04/09/25 15:07:00] INFO     Epoch: 4, Global Step: 47999, Training train.py:609
+                             Loss: 2.25                                         
+                    INFO     [TRAIN] [Epoch 04/09 Step 047999]      train.py:621
+                             [Batch 00444/11889]                                
+                             [00:01:17/00:33:17, 0.175s/it]:                    
+                             train_loss_raw=2.2465,                             
+                             running_loss=2.0569, LR=0.000050                   
+[04/09/25 15:08:21] INFO     Epoch: 4, Global Step: 48499, Training train.py:609
+                             Loss: 2.36                                         
+[04/09/25 15:09:43] INFO     Epoch: 4, Global Step: 48999, Training train.py:609
+                             Loss: 1.94                                         
+[04/09/25 15:11:04] INFO     Epoch: 4, Global Step: 49499, Training train.py:609
+                             Loss: 1.79                                         
+[04/09/25 15:12:15] INFO     Validation loop.                       train.py:497
+[04/09/25 15:12:18] INFO     Epoch 4, Validation loss: 1.93         train.py:536
+[04/09/25 15:12:19] INFO     aa_prec: 0.0089, aa_recall: 0.0088,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9323                  
+[04/09/25 15:12:28] INFO     Epoch: 4, Global Step: 49999, Training train.py:609
+                             Loss: 2.05                                         
+                    INFO     [TRAIN] [Epoch 04/09 Step 049999]      train.py:621
+                             [Batch 02444/11889]                                
+                             [00:06:45/00:26:08, 0.166s/it]:                    
+                             train_loss_raw=2.0503,                             
+                             running_loss=2.0263, LR=0.000050                   
+                    INFO     Saving model epoch_4_step_49999.       train.py:646
+[04/09/25 15:12:30] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 15:13:52] INFO     Epoch: 4, Global Step: 50499, Training train.py:609
+                             Loss: 1.60                                         
+[04/09/25 15:15:13] INFO     Epoch: 4, Global Step: 50999, Training train.py:609
+                             Loss: 2.16                                         
+[04/09/25 15:16:37] INFO     Epoch: 4, Global Step: 51499, Training train.py:609
+                             Loss: 2.18                                         
+[04/09/25 15:17:58] INFO     Epoch: 4, Global Step: 51999, Training train.py:609
+                             Loss: 1.92                                         
+                    INFO     [TRAIN] [Epoch 04/09 Step 051999]      train.py:621
+                             [Batch 04444/11889]                                
+                             [00:12:15/00:20:32, 0.165s/it]:                    
+                             train_loss_raw=1.9228,                             
+                             running_loss=2.0113, LR=0.000050                   
+[04/09/25 15:18:49] INFO     Validation loop.                       train.py:497
+[04/09/25 15:18:53] INFO     Epoch 4, Validation loss: 2.00         train.py:536
+                    INFO     aa_prec: 0.0061, aa_recall: 0.0056,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9158                  
+[04/09/25 15:19:22] INFO     Epoch: 4, Global Step: 52499, Training train.py:609
+                             Loss: 2.11                                         
+[04/09/25 15:20:43] INFO     Epoch: 4, Global Step: 52999, Training train.py:609
+                             Loss: 2.25                                         
+[04/09/25 15:22:04] INFO     Epoch: 4, Global Step: 53499, Training train.py:609
+                             Loss: 2.32                                         
+[04/09/25 15:23:26] INFO     Epoch: 4, Global Step: 53999, Training train.py:609
+                             Loss: 1.59                                         
+                    INFO     [TRAIN] [Epoch 04/09 Step 053999]      train.py:621
+                             [Batch 06444/11889]                                
+                             [00:17:43/00:14:58, 0.165s/it]:                    
+                             train_loss_raw=1.5929,                             
+                             running_loss=2.0003, LR=0.000050                   
+[04/09/25 15:24:48] INFO     Epoch: 4, Global Step: 54499, Training train.py:609
+                             Loss: 1.97                                         
+[04/09/25 15:25:21] INFO     Validation loop.                       train.py:497
+[04/09/25 15:25:24] INFO     Epoch 4, Validation loss: 2.12         train.py:536
+                    INFO     aa_prec: 0.0090, aa_recall: 0.0091,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9670                  
+[04/09/25 15:26:15] INFO     Epoch: 4, Global Step: 54999, Training train.py:609
+                             Loss: 1.79                                         
+[04/09/25 15:27:38] INFO     Epoch: 4, Global Step: 55499, Training train.py:609
+                             Loss: 2.28                                         
+[04/09/25 15:29:00] INFO     Epoch: 4, Global Step: 55999, Training train.py:609
+                             Loss: 1.66                                         
+[04/09/25 15:29:01] INFO     [TRAIN] [Epoch 04/09 Step 055999]      train.py:621
+                             [Batch 08444/11889]                                
+                             [00:23:18/00:09:30, 0.166s/it]:                    
+                             train_loss_raw=1.6625,                             
+                             running_loss=1.9924, LR=0.000050                   
+[04/09/25 15:30:24] INFO     Epoch: 4, Global Step: 56499, Training train.py:609
+                             Loss: 1.87                                         
+[04/09/25 15:31:47] INFO     Epoch: 4, Global Step: 56999, Training train.py:609
+                             Loss: 2.58                                         
+[04/09/25 15:31:59] INFO     Validation loop.                       train.py:497
+[04/09/25 15:32:02] INFO     Epoch 4, Validation loss: 1.88         train.py:536
+[04/09/25 15:32:03] INFO     aa_prec: 0.0082, aa_recall: 0.0081,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9488                  
+[04/09/25 15:33:12] INFO     Epoch: 4, Global Step: 57499, Training train.py:609
+                             Loss: 2.03                                         
+[04/09/25 15:34:36] INFO     Epoch: 4, Global Step: 57999, Training train.py:609
+                             Loss: 2.09                                         
+                    INFO     [TRAIN] [Epoch 04/09 Step 057999]      train.py:621
+                             [Batch 10444/11889]                                
+                             [00:28:53/00:03:59, 0.166s/it]:                    
+                             train_loss_raw=2.0880,                             
+                             running_loss=2.0494, LR=0.000050                   
+[04/09/25 15:35:58] INFO     Epoch: 4, Global Step: 58499, Training train.py:609
+                             Loss: 1.68                                         
+[04/09/25 15:37:19] INFO     Epoch: 4, Global Step: 58999, Training train.py:609
+                             Loss: 2.23                                         
+[04/09/25 15:38:33] INFO     Training loop                          train.py:564
+                    INFO     Validation loop.                       train.py:497
+[04/09/25 15:38:37] INFO     Epoch 5, Validation loss: 2.05         train.py:536
+                    INFO     aa_prec: 0.0086, aa_recall: 0.0081,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9193                  
+[04/09/25 15:38:45] INFO     Epoch: 5, Global Step: 59499, Training train.py:609
+                             Loss: 2.31                                         
+[04/09/25 15:40:08] INFO     Epoch: 5, Global Step: 59999, Training train.py:609
+                             Loss: 1.36                                         
+                    INFO     [TRAIN] [Epoch 05/09 Step 059999]      train.py:621
+                             [Batch 00555/11889]                                
+                             [00:01:34/00:32:18, 0.171s/it]:                    
+                             train_loss_raw=1.3644,                             
+                             running_loss=2.0235, LR=0.000050                   
+                    INFO     Saving model epoch_5_step_59999.       train.py:646
+[04/09/25 15:40:09] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 15:41:31] INFO     Epoch: 5, Global Step: 60499, Training train.py:609
+                             Loss: 1.63                                         
+[04/09/25 15:42:52] INFO     Epoch: 5, Global Step: 60999, Training train.py:609
+                             Loss: 1.79                                         
+[04/09/25 15:44:13] INFO     Epoch: 5, Global Step: 61499, Training train.py:609
+                             Loss: 2.34                                         
+[04/09/25 15:45:06] INFO     Validation loop.                       train.py:497
+[04/09/25 15:45:09] INFO     Epoch 5, Validation loss: 2.02         train.py:536
+[04/09/25 15:45:10] INFO     aa_prec: 0.0101, aa_recall: 0.0084,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8916                  
+[04/09/25 15:45:38] INFO     Epoch: 5, Global Step: 61999, Training train.py:609
+                             Loss: 2.48                                         
+                    INFO     [TRAIN] [Epoch 05/09 Step 061999]      train.py:621
+                             [Batch 02555/11889]                                
+                             [00:07:05/00:25:54, 0.167s/it]:                    
+                             train_loss_raw=2.4783,                             
+                             running_loss=2.0587, LR=0.000050                   
+[04/09/25 15:47:00] INFO     Epoch: 5, Global Step: 62499, Training train.py:609
+                             Loss: 2.29                                         
+[04/09/25 15:48:22] INFO     Epoch: 5, Global Step: 62999, Training train.py:609
+                             Loss: 2.32                                         
+[04/09/25 15:49:44] INFO     Epoch: 5, Global Step: 63499, Training train.py:609
+                             Loss: 1.97                                         
+[04/09/25 15:51:05] INFO     Epoch: 5, Global Step: 63999, Training train.py:609
+                             Loss: 1.87                                         
+                    INFO     [TRAIN] [Epoch 05/09 Step 063999]      train.py:621
+                             [Batch 04555/11889]                                
+                             [00:12:32/00:20:11, 0.165s/it]:                    
+                             train_loss_raw=1.8662,                             
+                             running_loss=2.0167, LR=0.000050                   
+[04/09/25 15:51:38] INFO     Validation loop.                       train.py:497
+[04/09/25 15:51:41] INFO     Epoch 5, Validation loss: 2.10         train.py:536
+[04/09/25 15:51:42] INFO     aa_prec: 0.0072, aa_recall: 0.0077,    train.py:552
+                             pep_recall: 0.0000, aa_er: 1.0018                  
+[04/09/25 15:52:29] INFO     Epoch: 5, Global Step: 64499, Training train.py:609
+                             Loss: 2.09                                         
+[04/09/25 15:53:50] INFO     Epoch: 5, Global Step: 64999, Training train.py:609
+                             Loss: 2.07                                         
+[04/09/25 15:55:10] INFO     Epoch: 5, Global Step: 65499, Training train.py:609
+                             Loss: 2.20                                         
+[04/09/25 15:56:32] INFO     Epoch: 5, Global Step: 65999, Training train.py:609
+                             Loss: 2.20                                         
+                    INFO     [TRAIN] [Epoch 05/09 Step 065999]      train.py:621
+                             [Batch 06555/11889]                                
+                             [00:17:59/00:14:38, 0.165s/it]:                    
+                             train_loss_raw=2.2030,                             
+                             running_loss=2.0092, LR=0.000050                   
+[04/09/25 15:57:54] INFO     Epoch: 5, Global Step: 66499, Training train.py:609
+                             Loss: 1.80                                         
+[04/09/25 15:58:07] INFO     Validation loop.                       train.py:497
+[04/09/25 15:58:12] INFO     Epoch 5, Validation loss: 2.25         train.py:536
+                    INFO     aa_prec: 0.0092, aa_recall: 0.0084,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9246                  
+[04/09/25 15:59:21] INFO     Epoch: 5, Global Step: 66999, Training train.py:609
+                             Loss: 1.85                                         
+[04/09/25 16:00:43] INFO     Epoch: 5, Global Step: 67499, Training train.py:609
+                             Loss: 2.52                                         
+[04/09/25 16:02:04] INFO     Epoch: 5, Global Step: 67999, Training train.py:609
+                             Loss: 1.71                                         
+                    INFO     [TRAIN] [Epoch 05/09 Step 067999]      train.py:621
+                             [Batch 08555/11889]                                
+                             [00:23:31/00:09:09, 0.165s/it]:                    
+                             train_loss_raw=1.7096,                             
+                             running_loss=2.0018, LR=0.000050                   
+[04/09/25 16:03:25] INFO     Epoch: 5, Global Step: 68499, Training train.py:609
+                             Loss: 1.89                                         
+[04/09/25 16:04:39] INFO     Validation loop.                       train.py:497
+[04/09/25 16:04:43] INFO     Epoch 5, Validation loss: 1.96         train.py:536
+                    INFO     aa_prec: 0.0139, aa_recall: 0.0109,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8782                  
+[04/09/25 16:04:49] INFO     Epoch: 5, Global Step: 68999, Training train.py:609
+                             Loss: 2.19                                         
+[04/09/25 16:06:12] INFO     Epoch: 5, Global Step: 69499, Training train.py:609
+                             Loss: 1.95                                         
+[04/09/25 16:07:34] INFO     Epoch: 5, Global Step: 69999, Training train.py:609
+                             Loss: 2.01                                         
+                    INFO     [TRAIN] [Epoch 05/09 Step 069999]      train.py:621
+                             [Batch 10555/11889]                                
+                             [00:29:01/00:03:40, 0.165s/it]:                    
+                             train_loss_raw=2.0079,                             
+                             running_loss=2.0337, LR=0.000050                   
+                    INFO     Saving model epoch_5_step_69999.       train.py:646
+[04/09/25 16:07:35] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 16:08:58] INFO     Epoch: 5, Global Step: 70499, Training train.py:609
+                             Loss: 2.01                                         
+[04/09/25 16:10:20] INFO     Epoch: 5, Global Step: 70999, Training train.py:609
+                             Loss: 1.71                                         
+[04/09/25 16:11:17] INFO     Training loop                          train.py:564
+[04/09/25 16:11:18] INFO     Validation loop.                       train.py:497
+[04/09/25 16:11:22] INFO     Epoch 6, Validation loss: 2.03         train.py:536
+                    INFO     aa_prec: 0.0092, aa_recall: 0.0088,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9140                  
+[04/09/25 16:11:49] INFO     Epoch: 6, Global Step: 71499, Training train.py:609
+                             Loss: 2.16                                         
+[04/09/25 16:13:11] INFO     Epoch: 6, Global Step: 71999, Training train.py:609
+                             Loss: 2.18                                         
+                    INFO     [TRAIN] [Epoch 06/09 Step 071999]      train.py:621
+                             [Batch 00666/11889]                                
+                             [00:01:53/00:31:56, 0.171s/it]:                    
+                             train_loss_raw=2.1806,                             
+                             running_loss=2.0144, LR=0.000050                   
+[04/09/25 16:14:34] INFO     Epoch: 6, Global Step: 72499, Training train.py:609
+                             Loss: 1.61                                         
+[04/09/25 16:15:55] INFO     Epoch: 6, Global Step: 72999, Training train.py:609
+                             Loss: 2.19                                         
+[04/09/25 16:17:15] INFO     Epoch: 6, Global Step: 73499, Training train.py:609
+                             Loss: 1.77                                         
+[04/09/25 16:17:51] INFO     Validation loop.                       train.py:497
+[04/09/25 16:17:54] INFO     Epoch 6, Validation loss: 1.99         train.py:536
+[04/09/25 16:17:55] INFO     aa_prec: 0.0134, aa_recall: 0.0112,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8881                  
+[04/09/25 16:18:40] INFO     Epoch: 6, Global Step: 73999, Training train.py:609
+                             Loss: 2.07                                         
+                    INFO     [TRAIN] [Epoch 06/09 Step 073999]      train.py:621
+                             [Batch 02666/11889]                                
+                             [00:07:23/00:25:33, 0.166s/it]:                    
+                             train_loss_raw=2.0671,                             
+                             running_loss=2.0608, LR=0.000050                   
+[04/09/25 16:20:02] INFO     Epoch: 6, Global Step: 74499, Training train.py:609
+                             Loss: 2.36                                         
+[04/09/25 16:21:23] INFO     Epoch: 6, Global Step: 74999, Training train.py:609
+                             Loss: 2.42                                         
+[04/09/25 16:22:44] INFO     Epoch: 6, Global Step: 75499, Training train.py:609
+                             Loss: 2.04                                         
+[04/09/25 16:24:06] INFO     Epoch: 6, Global Step: 75999, Training train.py:609
+                             Loss: 2.10                                         
+                    INFO     [TRAIN] [Epoch 06/09 Step 075999]      train.py:621
+                             [Batch 04666/11889]                                
+                             [00:12:49/00:19:50, 0.165s/it]:                    
+                             train_loss_raw=2.1009,                             
+                             running_loss=2.0452, LR=0.000050                   
+[04/09/25 16:24:22] INFO     Validation loop.                       train.py:497
+[04/09/25 16:24:26] INFO     Epoch 6, Validation loss: 2.05         train.py:536
+                    INFO     aa_prec: 0.0097, aa_recall: 0.0088,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9056                  
+[04/09/25 16:25:32] INFO     Epoch: 6, Global Step: 76499, Training train.py:609
+                             Loss: 1.88                                         
+[04/09/25 16:26:54] INFO     Epoch: 6, Global Step: 76999, Training train.py:609
+                             Loss: 1.87                                         
+[04/09/25 16:28:15] INFO     Epoch: 6, Global Step: 77499, Training train.py:609
+                             Loss: 2.16                                         
+[04/09/25 16:29:35] INFO     Epoch: 6, Global Step: 77999, Training train.py:609
+                             Loss: 2.30                                         
+[04/09/25 16:29:36] INFO     [TRAIN] [Epoch 06/09 Step 077999]      train.py:621
+                             [Batch 06666/11889]                                
+                             [00:18:18/00:14:20, 0.165s/it]:                    
+                             train_loss_raw=2.2998,                             
+                             running_loss=2.0313, LR=0.000050                   
+[04/09/25 16:30:53] INFO     Validation loop.                       train.py:497
+[04/09/25 16:30:57] INFO     Epoch 6, Validation loss: 1.95         train.py:536
+                    INFO     aa_prec: 0.0062, aa_recall: 0.0056,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9014                  
+[04/09/25 16:31:01] INFO     Epoch: 6, Global Step: 78499, Training train.py:609
+                             Loss: 2.57                                         
+[04/09/25 16:32:22] INFO     Epoch: 6, Global Step: 78999, Training train.py:609
+                             Loss: 2.19                                         
+[04/09/25 16:33:44] INFO     Epoch: 6, Global Step: 79499, Training train.py:609
+                             Loss: 2.50                                         
+[04/09/25 16:35:04] INFO     Epoch: 6, Global Step: 79999, Training train.py:609
+                             Loss: 1.83                                         
+                    INFO     [TRAIN] [Epoch 06/09 Step 079999]      train.py:621
+                             [Batch 08666/11889]                                
+                             [00:23:46/00:08:50, 0.165s/it]:                    
+                             train_loss_raw=1.8349,                             
+                             running_loss=1.9933, LR=0.000050                   
+                    INFO     Saving model epoch_6_step_79999.       train.py:646
+[04/09/25 16:35:05] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 16:36:28] INFO     Epoch: 6, Global Step: 80499, Training train.py:609
+                             Loss: 2.03                                         
+[04/09/25 16:37:25] INFO     Validation loop.                       train.py:497
+[04/09/25 16:37:31] INFO     Epoch 6, Validation loss: 2.01         train.py:536
+                    INFO     aa_prec: 0.0076, aa_recall: 0.0074,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9260                  
+[04/09/25 16:37:54] INFO     Epoch: 6, Global Step: 80999, Training train.py:609
+                             Loss: 1.92                                         
+[04/09/25 16:39:16] INFO     Epoch: 6, Global Step: 81499, Training train.py:609
+                             Loss: 1.72                                         
+[04/09/25 16:40:36] INFO     Epoch: 6, Global Step: 81999, Training train.py:609
+                             Loss: 1.94                                         
+[04/09/25 16:40:37] INFO     [TRAIN] [Epoch 06/09 Step 081999]      train.py:621
+                             [Batch 10666/11889]                                
+                             [00:29:19/00:03:21, 0.165s/it]:                    
+                             train_loss_raw=1.9408,                             
+                             running_loss=1.9977, LR=0.000050                   
+[04/09/25 16:41:58] INFO     Epoch: 6, Global Step: 82499, Training train.py:609
+                             Loss: 2.20                                         
+[04/09/25 16:43:20] INFO     Epoch: 6, Global Step: 82999, Training train.py:609
+                             Loss: 2.19                                         
+[04/09/25 16:43:58] INFO     Training loop                          train.py:564
+[04/09/25 16:44:00] INFO     Validation loop.                       train.py:497
+[04/09/25 16:44:03] INFO     Epoch 7, Validation loss: 2.12         train.py:536
+                    INFO     aa_prec: 0.0090, aa_recall: 0.0088,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9470                  
+[04/09/25 16:44:47] INFO     Epoch: 7, Global Step: 83499, Training train.py:609
+                             Loss: 1.79                                         
+[04/09/25 16:46:08] INFO     Epoch: 7, Global Step: 83999, Training train.py:609
+                             Loss: 2.02                                         
+                    INFO     [TRAIN] [Epoch 07/09 Step 083999]      train.py:621
+                             [Batch 00777/11889]                                
+                             [00:02:09/00:30:56, 0.167s/it]:                    
+                             train_loss_raw=2.0170,                             
+                             running_loss=2.0301, LR=0.000050                   
+[04/09/25 16:47:28] INFO     Epoch: 7, Global Step: 84499, Training train.py:609
+                             Loss: 2.50                                         
+[04/09/25 16:48:50] INFO     Epoch: 7, Global Step: 84999, Training train.py:609
+                             Loss: 2.10                                         
+[04/09/25 16:50:12] INFO     Epoch: 7, Global Step: 85499, Training train.py:609
+                             Loss: 1.98                                         
+[04/09/25 16:50:30] INFO     Validation loop.                       train.py:497
+[04/09/25 16:50:33] INFO     Epoch 7, Validation loss: 2.15         train.py:536
+                    INFO     aa_prec: 0.0086, aa_recall: 0.0077,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9193                  
+[04/09/25 16:51:37] INFO     Epoch: 7, Global Step: 85999, Training train.py:609
+                             Loss: 2.00                                         
+                    INFO     [TRAIN] [Epoch 07/09 Step 085999]      train.py:621
+                             [Batch 02777/11889]                                
+                             [00:07:39/00:25:07, 0.165s/it]:                    
+                             train_loss_raw=2.0019,                             
+                             running_loss=2.0328, LR=0.000050                   
+[04/09/25 16:52:59] INFO     Epoch: 7, Global Step: 86499, Training train.py:609
+                             Loss: 2.06                                         
+[04/09/25 16:54:22] INFO     Epoch: 7, Global Step: 86999, Training train.py:609
+                             Loss: 1.87                                         
+[04/09/25 16:55:44] INFO     Epoch: 7, Global Step: 87499, Training train.py:609
+                             Loss: 2.05                                         
+[04/09/25 16:57:05] INFO     Validation loop.                       train.py:497
+[04/09/25 16:57:08] INFO     Epoch 7, Validation loss: 2.12         train.py:536
+[04/09/25 16:57:09] INFO     aa_prec: 0.0096, aa_recall: 0.0088,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9242                  
+[04/09/25 16:57:11] INFO     Epoch: 7, Global Step: 87999, Training train.py:609
+                             Loss: 2.00                                         
+                    INFO     [TRAIN] [Epoch 07/09 Step 087999]      train.py:621
+                             [Batch 04777/11889]                                
+                             [00:13:13/00:19:40, 0.166s/it]:                    
+                             train_loss_raw=1.9966,                             
+                             running_loss=2.0144, LR=0.000050                   
+[04/09/25 16:58:33] INFO     Epoch: 7, Global Step: 88499, Training train.py:609
+                             Loss: 2.25                                         
+[04/09/25 16:59:55] INFO     Epoch: 7, Global Step: 88999, Training train.py:609
+                             Loss: 1.71                                         
+[04/09/25 17:01:18] INFO     Epoch: 7, Global Step: 89499, Training train.py:609
+                             Loss: 1.89                                         
+[04/09/25 17:02:40] INFO     Epoch: 7, Global Step: 89999, Training train.py:609
+                             Loss: 2.17                                         
+                    INFO     [TRAIN] [Epoch 07/09 Step 089999]      train.py:621
+                             [Batch 06777/11889]                                
+                             [00:18:41/00:14:06, 0.166s/it]:                    
+                             train_loss_raw=2.1680,                             
+                             running_loss=1.9978, LR=0.000050                   
+                    INFO     Saving model epoch_7_step_89999.       train.py:646
+[04/09/25 17:02:41] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 17:03:43] INFO     Validation loop.                       train.py:497
+[04/09/25 17:03:46] INFO     Epoch 7, Validation loss: 2.01         train.py:536
+[04/09/25 17:03:47] INFO     aa_prec: 0.0099, aa_recall: 0.0091,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9172                  
+[04/09/25 17:04:09] INFO     Epoch: 7, Global Step: 90499, Training train.py:609
+                             Loss: 2.21                                         
+[04/09/25 17:05:30] INFO     Epoch: 7, Global Step: 90999, Training train.py:609
+                             Loss: 2.10                                         
+[04/09/25 17:06:51] INFO     Epoch: 7, Global Step: 91499, Training train.py:609
+                             Loss: 1.87                                         
+[04/09/25 17:08:12] INFO     Epoch: 7, Global Step: 91999, Training train.py:609
+                             Loss: 2.28                                         
+                    INFO     [TRAIN] [Epoch 07/09 Step 091999]      train.py:621
+                             [Batch 08777/11889]                                
+                             [00:24:14/00:08:35, 0.166s/it]:                    
+                             train_loss_raw=2.2796,                             
+                             running_loss=2.0438, LR=0.000050                   
+[04/09/25 17:09:33] INFO     Epoch: 7, Global Step: 92499, Training train.py:609
+                             Loss: 1.79                                         
+[04/09/25 17:10:13] INFO     Validation loop.                       train.py:497
+[04/09/25 17:10:16] INFO     Epoch 7, Validation loss: 1.89         train.py:536
+[04/09/25 17:10:17] INFO     aa_prec: 0.0110, aa_recall: 0.0109,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9491                  
+[04/09/25 17:10:59] INFO     Epoch: 7, Global Step: 92999, Training train.py:609
+                             Loss: 1.87                                         
+[04/09/25 17:12:19] INFO     Epoch: 7, Global Step: 93499, Training train.py:609
+                             Loss: 2.38                                         
+[04/09/25 17:13:40] INFO     Epoch: 7, Global Step: 93999, Training train.py:609
+                             Loss: 2.28                                         
+                    INFO     [TRAIN] [Epoch 07/09 Step 093999]      train.py:621
+                             [Batch 10777/11889]                                
+                             [00:29:41/00:03:03, 0.165s/it]:                    
+                             train_loss_raw=2.2829,                             
+                             running_loss=2.0446, LR=0.000050                   
+[04/09/25 17:15:01] INFO     Epoch: 7, Global Step: 94499, Training train.py:609
+                             Loss: 2.18                                         
+[04/09/25 17:16:22] INFO     Epoch: 7, Global Step: 94999, Training train.py:609
+                             Loss: 2.02                                         
+[04/09/25 17:16:42] INFO     Training loop                          train.py:564
+[04/09/25 17:16:44] INFO     Validation loop.                       train.py:497
+[04/09/25 17:16:47] INFO     Epoch 8, Validation loss: 2.17         train.py:536
+                    INFO     aa_prec: 0.0095, aa_recall: 0.0084,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9063                  
+[04/09/25 17:17:49] INFO     Epoch: 8, Global Step: 95499, Training train.py:609
+                             Loss: 1.64                                         
+[04/09/25 17:19:11] INFO     Epoch: 8, Global Step: 95999, Training train.py:609
+                             Loss: 1.91                                         
+                    INFO     [TRAIN] [Epoch 08/09 Step 095999]      train.py:621
+                             [Batch 00888/11889]                                
+                             [00:02:28/00:30:43, 0.168s/it]:                    
+                             train_loss_raw=1.9054,                             
+                             running_loss=2.0159, LR=0.000050                   
+[04/09/25 17:20:32] INFO     Epoch: 8, Global Step: 96499, Training train.py:609
+                             Loss: 2.19                                         
+[04/09/25 17:21:51] INFO     Epoch: 8, Global Step: 96999, Training train.py:609
+                             Loss: 2.08                                         
+[04/09/25 17:23:12] INFO     Validation loop.                       train.py:497
+[04/09/25 17:23:16] INFO     Epoch 8, Validation loss: 2.11         train.py:536
+                    INFO     aa_prec: 0.0069, aa_recall: 0.0067,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9470                  
+[04/09/25 17:23:17] INFO     Epoch: 8, Global Step: 97499, Training train.py:609
+                             Loss: 2.42                                         
+[04/09/25 17:24:38] INFO     Epoch: 8, Global Step: 97999, Training train.py:609
+                             Loss: 1.76                                         
+                    INFO     [TRAIN] [Epoch 08/09 Step 097999]      train.py:621
+                             [Batch 02888/11889]                                
+                             [00:07:55/00:24:42, 0.165s/it]:                    
+                             train_loss_raw=1.7576,                             
+                             running_loss=2.0185, LR=0.000050                   
+[04/09/25 17:25:59] INFO     Epoch: 8, Global Step: 98499, Training train.py:609
+                             Loss: 1.66                                         
+[04/09/25 17:27:20] INFO     Epoch: 8, Global Step: 98999, Training train.py:609
+                             Loss: 1.92                                         
+[04/09/25 17:28:40] INFO     Epoch: 8, Global Step: 99499, Training train.py:609
+                             Loss: 1.65                                         
+[04/09/25 17:29:41] INFO     Validation loop.                       train.py:497
+[04/09/25 17:29:44] INFO     Epoch 8, Validation loss: 2.17         train.py:536
+[04/09/25 17:29:45] INFO     aa_prec: 0.0087, aa_recall: 0.0081,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9337                  
+[04/09/25 17:30:05] INFO     Epoch: 8, Global Step: 99999, Training train.py:609
+                             Loss: 1.88                                         
+                    INFO     [TRAIN] [Epoch 08/09 Step 099999]      train.py:621
+                             [Batch 04888/11889]                                
+                             [00:13:22/00:19:09, 0.164s/it]:                    
+                             train_loss_raw=1.8793,                             
+                             running_loss=2.0258, LR=0.000050                   
+                    INFO     Saving model epoch_8_step_99999.       train.py:646
+[04/09/25 17:30:07] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 17:31:28] INFO     Epoch: 8, Global Step: 100499,         train.py:609
+                             Training Loss: 1.97                                
+[04/09/25 17:32:48] INFO     Epoch: 8, Global Step: 100999,         train.py:609
+                             Training Loss: 1.97                                
+[04/09/25 17:34:10] INFO     Epoch: 8, Global Step: 101499,         train.py:609
+                             Training Loss: 2.26                                
+[04/09/25 17:35:31] INFO     Epoch: 8, Global Step: 101999,         train.py:609
+                             Training Loss: 2.31                                
+                    INFO     [TRAIN] [Epoch 08/09 Step 101999]      train.py:621
+                             [Batch 06888/11889]                                
+                             [00:18:48/00:13:39, 0.164s/it]:                    
+                             train_loss_raw=2.3099,                             
+                             running_loss=2.0499, LR=0.000050                   
+[04/09/25 17:36:12] INFO     Validation loop.                       train.py:497
+[04/09/25 17:36:15] INFO     Epoch 8, Validation loss: 2.14         train.py:536
+                    INFO     aa_prec: 0.0069, aa_recall: 0.0063,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9239                  
+[04/09/25 17:36:55] INFO     Epoch: 8, Global Step: 102499,         train.py:609
+                             Training Loss: 2.15                                
+[04/09/25 17:38:17] INFO     Epoch: 8, Global Step: 102999,         train.py:609
+                             Training Loss: 1.89                                
+[04/09/25 17:39:38] INFO     Epoch: 8, Global Step: 103499,         train.py:609
+                             Training Loss: 2.12                                
+[04/09/25 17:40:58] INFO     Epoch: 8, Global Step: 103999,         train.py:609
+                             Training Loss: 2.16                                
+                    INFO     [TRAIN] [Epoch 08/09 Step 103999]      train.py:621
+                             [Batch 08888/11889]                                
+                             [00:24:15/00:08:11, 0.164s/it]:                    
+                             train_loss_raw=2.1589,                             
+                             running_loss=1.9945, LR=0.000050                   
+[04/09/25 17:42:17] INFO     Epoch: 8, Global Step: 104499,         train.py:609
+                             Training Loss: 2.05                                
+[04/09/25 17:42:39] INFO     Validation loop.                       train.py:497
+[04/09/25 17:42:43] INFO     Epoch 8, Validation loss: 1.99         train.py:536
+                    INFO     aa_prec: 0.0086, aa_recall: 0.0070,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8849                  
+[04/09/25 17:43:42] INFO     Epoch: 8, Global Step: 104999,         train.py:609
+                             Training Loss: 2.05                                
+[04/09/25 17:45:02] INFO     Epoch: 8, Global Step: 105499,         train.py:609
+                             Training Loss: 2.32                                
+[04/09/25 17:46:23] INFO     Epoch: 8, Global Step: 105999,         train.py:609
+                             Training Loss: 2.20                                
+                    INFO     [TRAIN] [Epoch 08/09 Step 105999]      train.py:621
+                             [Batch 10888/11889]                                
+                             [00:29:40/00:02:43, 0.164s/it]:                    
+                             train_loss_raw=2.1993,                             
+                             running_loss=2.0346, LR=0.000050                   
+[04/09/25 17:47:47] INFO     Epoch: 8, Global Step: 106499,         train.py:609
+                             Training Loss: 1.87                                
+[04/09/25 17:49:09] INFO     Epoch: 8, Global Step: 106999,         train.py:609
+                             Training Loss: 2.40                                
+                    INFO     Training loop                          train.py:564
+[04/09/25 17:49:11] INFO     Validation loop.                       train.py:497
+[04/09/25 17:49:14] INFO     Epoch 9, Validation loss: 2.16         train.py:536
+                    INFO     aa_prec: 0.0088, aa_recall: 0.0084,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9386                  
+[04/09/25 17:50:34] INFO     Epoch: 9, Global Step: 107499,         train.py:609
+                             Training Loss: 2.08                                
+[04/09/25 17:51:55] INFO     Epoch: 9, Global Step: 107999,         train.py:609
+                             Training Loss: 2.08                                
+                    INFO     [TRAIN] [Epoch 09/09 Step 107999]      train.py:621
+                             [Batch 00999/11889]                                
+                             [00:02:45/00:29:59, 0.165s/it]:                    
+                             train_loss_raw=2.0772,                             
+                             running_loss=1.9825, LR=0.000050                   
+[04/09/25 17:53:16] INFO     Epoch: 9, Global Step: 108499,         train.py:609
+                             Training Loss: 1.86                                
+[04/09/25 17:54:37] INFO     Epoch: 9, Global Step: 108999,         train.py:609
+                             Training Loss: 2.10                                
+[04/09/25 17:55:39] INFO     Validation loop.                       train.py:497
+[04/09/25 17:55:42] INFO     Epoch 9, Validation loss: 1.97         train.py:536
+[04/09/25 17:55:43] INFO     aa_prec: 0.0095, aa_recall: 0.0095,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9649                  
+[04/09/25 17:56:01] INFO     Epoch: 9, Global Step: 109499,         train.py:609
+                             Training Loss: 1.89                                
+[04/09/25 17:57:22] INFO     Epoch: 9, Global Step: 109999,         train.py:609
+                             Training Loss: 2.09                                
+                    INFO     [TRAIN] [Epoch 09/09 Step 109999]      train.py:621
+                             [Batch 02999/11889]                                
+                             [00:08:12/00:24:20, 0.164s/it]:                    
+                             train_loss_raw=2.0870,                             
+                             running_loss=2.0171, LR=0.000050                   
+                    INFO     Saving model epoch_9_step_109999.      train.py:646
+[04/09/25 17:57:23] INFO     Moving transition      multinomial_diffusion.py:188
+                             model to device cuda                               
+[04/09/25 17:58:44] INFO     Epoch: 9, Global Step: 110499,         train.py:609
+                             Training Loss: 1.72                                
+[04/09/25 18:00:04] INFO     Epoch: 9, Global Step: 110999,         train.py:609
+                             Training Loss: 2.28                                
+[04/09/25 18:01:26] INFO     Epoch: 9, Global Step: 111499,         train.py:609
+                             Training Loss: 1.91                                
+[04/09/25 18:02:09] INFO     Validation loop.                       train.py:497
+[04/09/25 18:02:13] INFO     Epoch 9, Validation loss: 1.92         train.py:536
+                    INFO     aa_prec: 0.0066, aa_recall: 0.0053,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8754                  
+[04/09/25 18:02:50] INFO     Epoch: 9, Global Step: 111999,         train.py:609
+                             Training Loss: 1.41                                
+                    INFO     [TRAIN] [Epoch 09/09 Step 111999]      train.py:621
+                             [Batch 04999/11889]                                
+                             [00:13:40/00:18:51, 0.164s/it]:                    
+                             train_loss_raw=1.4119,                             
+                             running_loss=2.0327, LR=0.000050                   
+[04/09/25 18:04:12] INFO     Epoch: 9, Global Step: 112499,         train.py:609
+                             Training Loss: 1.81                                
+[04/09/25 18:05:32] INFO     Epoch: 9, Global Step: 112999,         train.py:609
+                             Training Loss: 1.96                                
+[04/09/25 18:06:53] INFO     Epoch: 9, Global Step: 113499,         train.py:609
+                             Training Loss: 2.01                                
+[04/09/25 18:08:13] INFO     Epoch: 9, Global Step: 113999,         train.py:609
+                             Training Loss: 1.95                                
+                    INFO     [TRAIN] [Epoch 09/09 Step 113999]      train.py:621
+                             [Batch 06999/11889]                                
+                             [00:19:03/00:13:19, 0.163s/it]:                    
+                             train_loss_raw=1.9515,                             
+                             running_loss=2.0491, LR=0.000050                   
+[04/09/25 18:08:36] INFO     Validation loop.                       train.py:497
+[04/09/25 18:08:40] INFO     Epoch 9, Validation loss: 2.15         train.py:536
+                    INFO     aa_prec: 0.0069, aa_recall: 0.0060,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.8905                  
+[04/09/25 18:09:37] INFO     Epoch: 9, Global Step: 114499,         train.py:609
+                             Training Loss: 2.37                                
+[04/09/25 18:10:59] INFO     Epoch: 9, Global Step: 114999,         train.py:609
+                             Training Loss: 2.32                                
+[04/09/25 18:12:20] INFO     Epoch: 9, Global Step: 115499,         train.py:609
+                             Training Loss: 1.85                                
+[04/09/25 18:13:41] INFO     Epoch: 9, Global Step: 115999,         train.py:609
+                             Training Loss: 2.03                                
+                    INFO     [TRAIN] [Epoch 09/09 Step 115999]      train.py:621
+                             [Batch 08999/11889]                                
+                             [00:24:31/00:07:52, 0.164s/it]:                    
+                             train_loss_raw=2.0313,                             
+                             running_loss=2.0726, LR=0.000050                   
+[04/09/25 18:15:02] INFO     Epoch: 9, Global Step: 116499,         train.py:609
+                             Training Loss: 2.10                                
+[04/09/25 18:15:05] INFO     Validation loop.                       train.py:497
+[04/09/25 18:15:08] INFO     Epoch 9, Validation loss: 1.95         train.py:536
+[04/09/25 18:15:09] INFO     aa_prec: 0.0090, aa_recall: 0.0077,    train.py:552
+                             pep_recall: 0.0000, aa_er: 0.9053                  
+[04/09/25 18:16:27] INFO     Epoch: 9, Global Step: 116999,         train.py:609
+                             Training Loss: 1.75                                
+[04/09/25 18:17:47] INFO     Epoch: 9, Global Step: 117499,         train.py:609
+                             Training Loss: 1.75                                
+[04/09/25 18:19:06] INFO     Epoch: 9, Global Step: 117999,         train.py:609
+                             Training Loss: 1.80                                
+                    INFO     [TRAIN] [Epoch 09/09 Step 117999]      train.py:621
+                             [Batch 10999/11889]                                
+                             [00:29:56/00:02:25, 0.163s/it]:                    
+                             train_loss_raw=1.7982,                             
+                             running_loss=2.0247, LR=0.000050                   
+[04/09/25 18:20:28] INFO     Epoch: 9, Global Step: 118499,         train.py:609
+                             Training Loss: 1.96                                
+[04/09/25 18:21:34] INFO     InstaNovo+ training finished.          train.py:661

@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 
 import json
@@ -108,7 +109,7 @@ class InstaNovoPlus(nn.Module):
         ckpt_details: str,
         overwrite: bool = False,
         temp_dir: str = "",  # type: ignore
-        use_legacy_format: bool = True,  # TODO default to false post update
+        use_legacy_format: bool = False,  # TODO default to false post update
     ) -> None:
         """Save the model to a directory.
 
@@ -436,8 +437,12 @@ class InstaNovoPlus(nn.Module):
 
         amino_acid_dist = np.load("instanovo_marg/configs/amino_acid_distribution.npy").squeeze()
         amino_acid_dist_tensor = torch.tensor(amino_acid_dist, dtype=torch.float)
-        log_probs = amino_acid_dist_tensor.expand(log_x.shape[0], log_x.shape[1], log_x.shape[2])
-        return torch.logaddexp(log_x + log_alpha, log_alpha_complement + log_probs)
+        log_prior = torch.log(amino_acid_dist_tensor + 1e-8)
+        log_prior = log_prior.expand(log_x.shape).to(log_x.device)
+
+        assert np.allclose(np.exp(log_alpha.cpu()) + np.exp(log_alpha_complement.cpu()), np.ones_like(log_alpha.cpu()), atol=1e-6)\
+            , "Error with Alpha"
+        return torch.logaddexp(log_x + log_alpha, log_alpha_complement + log_prior)
 
     def forward(
         self,
@@ -501,7 +506,7 @@ class InstaNovoPlus(nn.Module):
         """
         log_x_0 = log_softmax(self.transition_model(x_t, t=time, **kwargs), -1)
         return self.forward(
-            log_x_t=torch.log(one_hot(x_t, len(self.residues))), log_x_0=log_x_0, t=time
+            log_x_t=torch.log(one_hot(x_t, len(self.residues))+ 1e-10), log_x_0=log_x_0, t=time
         )
 
 
@@ -551,11 +556,12 @@ class DiffusionLoss(nn.Module):
         probs_second = probs_second / probs_second.sum(dim=-1, keepdim=True)
 
         # Compute log-probabilities
-        log_probs_first = torch.log(probs_first)
-        log_probs_second = torch.log(probs_second)
+        log_probs_first = torch.log(probs_first+ 1e-10)
+        log_probs_second = torch.log(probs_second+ 1e-10).to(log_probs_first.device)
 
         # KL divergence formula
-        kl = (probs_first * (log_probs_first - log_probs_second)).sum(-1).sum(-1)
+        kl = (probs_first * (log_probs_first - log_probs_second)).sum(dim=-1)
+        # kl = (probs_first * (log_probs_first - log_probs_second)).sum(-1).sum(-1)
 
         return kl
         # return (torch.exp(log_probs_first) * (log_probs_first - log_probs_second)).sum(-1).sum(-1)
@@ -579,7 +585,7 @@ class DiffusionLoss(nn.Module):
         # 2. Compute L_t
         loss = self._compute_loss(t=t, x_0=x_0, **kwargs).mean()
         # 3. Calculate prior KL term
-        log_x_0 = torch.log(one_hot(x_0, num_classes=len(self.model.residues)))
+        log_x_0 = torch.log(one_hot(x_0, num_classes=len(self.model.residues))+ 1e-10)
         final_log_probs = self.model.mixture_categorical(
             log_x=log_x_0,
             log_alpha=self.model.cumulative_schedule[self.time_steps - 1]
@@ -594,6 +600,10 @@ class DiffusionLoss(nn.Module):
         # uniform_log_probs = torch.log(torch.ones_like(final_log_probs) / len(self.model.residues))
         amino_acid_dist = np.load("instanovo_marg/configs/amino_acid_distribution.npy").squeeze()
         target_log_probs = torch.tensor(amino_acid_dist, dtype=torch.float)
+        target_log_probs = torch.tensor(amino_acid_dist, dtype=torch.float, device=final_log_probs.device)
+        target_log_probs = target_log_probs.log().unsqueeze(0).unsqueeze(0)  # [1, 1, num_classes]
+        target_log_probs = target_log_probs.expand_as(final_log_probs)
+
         kl_loss = self.kl_divergence(final_log_probs, target_log_probs).mean()
         return loss + kl_loss
 
@@ -604,7 +614,7 @@ class DiffusionLoss(nn.Module):
         **kwargs: dict,
     ) -> Float[torch.Tensor, " batch"]:
         # 1. sample x_{t+1}
-        log_x_0 = torch.log(one_hot(x_0, num_classes=len(self.model.residues)))
+        log_x_0 = torch.log(one_hot(x_0, num_classes=len(self.model.residues))+1e-10)
         log_probs = self.model.mixture_categorical(
             log_x=log_x_0,
             log_alpha=self.model.cumulative_schedule[t].unsqueeze(-1).unsqueeze(-1),
@@ -619,8 +629,8 @@ class DiffusionLoss(nn.Module):
 
         nll_loss = -(one_hot(x_0, num_classes=len(self.model.residues)) * log_dist).sum(-1).sum(-1)
         log_posterior = self.model(
-            log_x_0=log_x_0, log_x_t=torch.log(one_hot(x_next, log_probs.size(-1))), t=t
+            log_x_0=log_x_0, log_x_t=torch.log(one_hot(x_next, log_probs.size(-1))+1e-10), t=t
         )
-        denoising_loss = self.kl_divergence(log_posterior, log_dist)
+        denoising_loss = self.kl_divergence(log_posterior, log_dist).sum(-1)
         loss = torch.where(t == 0, nll_loss, denoising_loss)
         return loss

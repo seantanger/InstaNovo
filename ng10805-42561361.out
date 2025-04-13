@@ -1,0 +1,285 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) CCconfig        6)  ucx/1.14.1         11) flexiblas/3.3.1
+  2) gentoo/2023     7)  libfabric/1.18.0   12) blis/0.9.0
+  3) gcccore/.12.3   8)  pmix/4.2.4         13) StdEnv/2023
+  4) gcc/12.3        9)  ucc/1.2.0
+  5) hwloc/2.9.1     10) openmpi/4.1.5
+[04/12/25 20:01:29] INFO     Reading config from      train_diffusion_marg.py:48
+                             'instanovo_marg/configs'                           
+                             with name                                          
+                             'instanovoplus_marg'.                              
+[04/12/25 20:01:31] INFO     Initializing             train_diffusion_marg.py:65
+                             instanovo_marg+                                    
+                             training.                                          
+                    INFO     Python version: 3.11.4   train_diffusion_marg.py:66
+                             (main, Nov  4 2023,                                
+                             03:43:13) [GCC 12.3.1                              
+                             20230526]                                          
+                    INFO     PyTorch version:         train_diffusion_marg.py:67
+                             2.4.1+cu124                                        
+                    INFO     CUDA version: 12.4       train_diffusion_marg.py:68
+                    INFO     instanovo_marg+ training train_diffusion_marg.py:81
+                             config:                                            
+                             tb_summarywriter:                                  
+                             ./logs/instanovo/instano                           
+                             vplus-base                                         
+                             seed: 101                                          
+                             warmup_iters: 10000                                
+                             learning_rate: 5.0e-05                             
+                             weight_decay: 0                                    
+                             train_batch_size: 32                               
+                             n_gpu: 1                                           
+                             gradient_clip_val: 5                               
+                             predict_batch_size: 32                             
+                             compile_model: true                                
+                             epochs: 30                                         
+                             num_sanity_val_steps: 10                           
+                             console_logging_steps:                             
+                             2000                                               
+                             tensorboard_logging_step                           
+                             s: 500                                             
+                             report_to: null                                    
+                             run_name:                                          
+                             instanovoplus_base_marg                            
+                             tags:                                              
+                             - acpt                                             
+                             train_subset: 1                                    
+                             valid_subset: 0.01                                 
+                             val_check_interval: 0.2                            
+                             lazy_loading: true                                 
+                             max_shard_size: 1000000                            
+                             preshuffle_shards: false                           
+                             perform_data_checks:                               
+                             true                                               
+                             validate_precursor_mass:                           
+                             false                                              
+                             verbose_loading: true                              
+                             save_model: true                                   
+                             model_save_folder_path:                            
+                             checkpoints/instanovoplu                           
+                             s-base-marg                                        
+                             ckpt_interval: 25000                               
+                             train_from_scratch: true                           
+                             resume_checkpoint:                                 
+                             /home/seantang/projects/                           
+                             def-wan/seantang/InstaNo                           
+                             vo/checkpoints/instanovo                           
+                             plus-base-marg/epoch_20_                           
+                             step_324999.ckpt                                   
+                             blacklist: null                                    
+                             device: auto                                       
+                             fp16: true                                         
+                             time_steps: 20                                     
+                             vocab_size: 33                                     
+                             layers: 12                                         
+                             dim: 768                                           
+                             nheads: 8                                          
+                             dropout: 0.1                                       
+                             attention_type: wavlm                              
+                             wav_encoder: wavlm                                 
+                             wavlm_num_bucket: 140                              
+                             wavlm_max_dist: 280                                
+                             dim_feedforward: 1024                              
+                             max_charge: 10                                     
+                             t_emb_dim: 768                                     
+                             t_emb_max_period: 10000                            
+                             cond_emb_dim: 768                                  
+                             drop_cond_prob: 0.1                                
+                             cond_cross_attn_layers:                            
+                             - 0                                                
+                             - 3                                                
+                             - 6                                                
+                             - 9                                                
+                             conv_pos: 256                                      
+                             conv_pos_groups: 32                                
+                             diffusion_type:                                    
+                             multinomial                                        
+                             diffusion_s: 0.008                                 
+                             pos_encoding: relative                             
+                             use_flash_attention:                               
+                             false                                              
+                             conv_peak_encoder: false                           
+                             n_peaks: 200                                       
+                             min_mz: 50.0                                       
+                             max_mz: 2500.0                                     
+                             min_intensity: 0.01                                
+                             remove_precursor_tol:                              
+                             2.0                                                
+                             precursor_mass_tol: 50                             
+                             isotope_error_range:                               
+                             - 0                                                
+                             - 1                                                
+                             max_length: 40                                     
+                             use_shards: true                                   
+                             train_path:                                        
+                             data/ms_proteometools/tr                           
+                             ain.ipc                                            
+                             valid_path:                                        
+                             data/ms_proteometools/va                           
+                             lid.ipc                                            
+                             valid_subset_of_train:                             
+                             null                                               
+                             source_type: ipc                                   
+                             residue_remapping:                                 
+                               M(ox): M[UNIMOD:35]                              
+                               M(+15.99):                                       
+                             M[UNIMOD:35]                                       
+                               S(p): S[UNIMOD:21]                               
+                               T(p): T[UNIMOD:21]                               
+                               Y(p): Y[UNIMOD:21]                               
+                               S(+79.97):                                       
+                             S[UNIMOD:21]                                       
+                               T(+79.97):                                       
+                             T[UNIMOD:21]                                       
+                               Y(+79.97):                                       
+                             Y[UNIMOD:21]                                       
+                               Q(+0.98): Q[UNIMOD:7]                            
+                               N(+0.98): N[UNIMOD:7]                            
+                               Q(+.98): Q[UNIMOD:7]                             
+                               N(+.98): N[UNIMOD:7]                             
+                               C(+57.02): C[UNIMOD:4]                           
+                               (+42.01): '[UNIMOD:1]'                           
+                               (+43.01): '[UNIMOD:5]'                           
+                               (-17.03):                                        
+                             '[UNIMOD:385]'                                     
+                             residues:                                          
+                               G: 57.021464                                     
+                               A: 71.037114                                     
+                               S: 87.032028                                     
+                               P: 97.052764                                     
+                               V: 99.068414                                     
+                               T: 101.04767                                     
+                               C: 103.009185                                    
+                               L: 113.084064                                    
+                               I: 113.084064                                    
+                               'N': 114.042927                                  
+                               D: 115.026943                                    
+                               Q: 128.058578                                    
+                               K: 128.094963                                    
+                               E: 129.042593                                    
+                               M: 131.040485                                    
+                               H: 137.058912                                    
+                               F: 147.068414                                    
+                               R: 156.101111                                    
+                               'Y': 163.063329                                  
+                               W: 186.079313                                    
+                               M[UNIMOD:35]: 147.0354                           
+                               C[UNIMOD:4]:                                     
+                             160.030649                                         
+                               N[UNIMOD:7]:                                     
+                             115.026943                                         
+                               Q[UNIMOD:7]:                                     
+                             129.042594                                         
+                               S[UNIMOD:21]:                                    
+                             166.998028                                         
+                               T[UNIMOD:21]:                                    
+                             181.01367                                          
+                               Y[UNIMOD:21]:                                    
+                             243.029329                                         
+                               '[UNIMOD:1]':                                    
+                             42.010565                                          
+                               '[UNIMOD:5]':                                    
+                             43.005814                                          
+                               '[UNIMOD:385]':                                  
+                             -17.026549                                         
+                                                                                
+/lustre06/project/6017024/seantang/InstaNovo/instanovo_marg/utils/marginal_distribution.py:130: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  aa_counts_df = aa_counts_df.groupby("Converted Amino Acid").sum().reset_index()
+[04/12/25 20:04:31] INFO     Starting diffusion training            train.py:105
+                    INFO     Vocab: {0: '[PAD]', 1: '[SOS]', 2:     train.py:112
+                             '[EOS]', 3: 'G', 4: 'A', 5: 'S', 6:                
+                             'P', 7: 'V', 8: 'T', 9: 'C', 10: 'L',              
+                             11: 'I', 12: 'N', 13: 'D', 14: 'Q',                
+                             15: 'K', 16: 'E', 17: 'M', 18: 'H',                
+                             19: 'F', 20: 'R', 21: 'Y', 22: 'W',                
+                             23: 'M[UNIMOD:35]', 24: 'C[UNIMOD:4]',             
+                             25: 'N[UNIMOD:7]', 26: 'Q[UNIMOD:7]',              
+                             27: 'S[UNIMOD:21]', 28:                            
+                             'T[UNIMOD:21]', 29: 'Y[UNIMOD:21]',                
+                             30: '[UNIMOD:1]', 31: '[UNIMOD:5]',                
+                             32: '[UNIMOD:385]'}                                
+                    INFO     Loading data                           train.py:114
+                    INFO     Loading file 001 of 001:        data_handler.py:321
+                             data/ms_proteometools/train.ipc                    
+[04/12/25 20:05:12] INFO     Saving temporary file to        data_handler.py:401
+                             /tmp/tmpwkk6y298/temp_2abe988d7                    
+                             6a74f9ea7011f416891fe7a.parquet                    
+[04/12/25 20:05:35] INFO     Saving temporary file to        data_handler.py:401
+                             /tmp/tmpwkk6y298/temp_2f3b9934e                    
+                             15d414487e7fdb2c487e609.parquet                    
+[04/12/25 20:05:37] INFO     Saving temporary file to        data_handler.py:401
+                             /tmp/tmpwkk6y298/temp_eb17ff10e                    
+                             2ab48e988f68343a2639bd3.parquet                    
+[04/12/25 20:05:46] INFO     Verifying loaded data           data_handler.py:401
+[04/12/25 20:05:57] INFO     Checking for unknown residues in       train.py:180
+                             2,390,034 rows.                                    
+[04/12/25 20:06:45] INFO     Data loaded: 2,132,847 training        train.py:269
+                             samples; 2,554 validation samples                  
+                    INFO     Checking if any validation set         train.py:291
+                             overlaps with training set...                      
+                    INFO     No data leakage!                       train.py:296
+                    INFO     Model checkpointing every 0.38 epochs. train.py:311
+                    INFO     Updates per epoch: 66,652,             train.py:338
+                             step_scale=1.0                                     
+[04/12/25 20:07:02] INFO     Sample batch:                          train.py:342
+                    INFO      - spectra.shape=torch.Size([32, 200,  train.py:343
+                             2])                                                
+                    INFO      - precursors.shape=torch.Size([32,    train.py:344
+                             3])                                                
+                    INFO      - spectra_mask.shape=torch.Size([32,  train.py:345
+                             200])                                              
+                    INFO      - peptides.shape=torch.Size([32, 40]) train.py:346
+                    INFO      - peptides_mask.shape=torch.Size([32, train.py:347
+                             40])                                               
+                    INFO     Initializing model.                    train.py:355
+/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+[04/12/25 20:07:04] INFO     Model loaded with 172,584,193          train.py:438
+                             parameters                                         
+                    INFO     Training instanovo_marg+ on device:    train.py:444
+                             cuda                                               
+[04/12/25 20:07:05] INFO     Initializing loss.                     train.py:465
+                    INFO     Initializing optimizer.                train.py:468
+                    INFO     Model saving enabled                   train.py:481
+                    INFO     Saving every 25000 training steps.     train.py:486
+                    INFO     instanovo_marg+ training started.      train.py:491
+                    INFO     Training loop                          train.py:565
+/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/functional.py:5193: UserWarning: Support for mismatched key_padding_mask and attn_mask is deprecated. Use same type for both instead.
+  warnings.warn(
+[04/12/25 20:07:09] INFO     Validation loop.                       train.py:497
+[04/12/25 20:07:50] INFO     Epoch 0, Validation loss: 7.40         train.py:537
+[04/12/25 20:07:56] INFO     aa_prec: 0.0021, aa_recall: 0.0040,    train.py:553
+                             pep_recall: 0.0000, aa_er: 1.8614                  
+Traceback (most recent call last):
+  File "/lustre06/project/6017024/seantang/InstaNovo/train_diffusion_marg.py", line 92, in <module>
+    train_diffusion(config)
+  File "/lustre06/project/6017024/seantang/InstaNovo/instanovo_marg/diffusion/train.py", line 580, in train
+    loss = loss_function(
+           ^^^^^^^^^^^^^^
+  File "/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre06/project/6017024/seantang/InstaNovo/instanovo_marg/diffusion/multinomial_diffusion.py", line 586, in forward
+    loss = self._compute_loss(t=t, x_0=x_0, **kwargs).mean()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre06/project/6017024/seantang/InstaNovo/instanovo_marg/diffusion/multinomial_diffusion.py", line 628, in _compute_loss
+    log_dist = self.model.reverse_distribution(x_t=x_next, time=t, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre06/project/6017024/seantang/InstaNovo/instanovo_marg/diffusion/multinomial_diffusion.py", line 508, in reverse_distribution
+    return self.forward(
+           ^^^^^^^^^^^^^
+  File "/lustre06/project/6017024/seantang/InstaNovo/instanovo_marg/diffusion/multinomial_diffusion.py", line 470, in forward
+    log_prior = self.mixture_categorical(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre06/project/6017024/seantang/InstaNovo/instanovo_marg/diffusion/multinomial_diffusion.py", line 438, in mixture_categorical
+    amino_acid_dist = np.load("instanovo_marg/configs/amino_acid_distribution.npy").squeeze()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/numpy/lib/_npyio_impl.py", line 455, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'instanovo_marg/configs/amino_acid_distribution.npy'
