@@ -242,3 +242,5 @@ The following modules were not unloaded:
                              Loss: 2.03                                         
 [04/12/25 20:18:20] INFO     Epoch: 0, Global Step: 4999, Training  train.py:609
                              Loss: 1.98                                         
+[04/12/25 20:19:38] INFO     Epoch: 0, Global Step: 5499, Training  train.py:609
+                             Loss: 2.05                                         

@@ -87,6 +87,6 @@ with open(f"{config_path}/{config_name}.yaml", "r") as file:
 residues = config_tmp.get("defaults", {})[3]["residues"]
 # sdf = 
 
-get_marginal_distribution(extended_vocab=True)
+# get_marginal_distribution(extended_vocab=True)
 
 train_diffusion(config)

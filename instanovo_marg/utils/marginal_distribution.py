@@ -229,3 +229,5 @@ def get_marginal_distribution(sdf= None,
         column_vector /= column_vector.sum()
 
         np.save("instanovo_marg/configs/amino_acid_distribution.npy", column_vector.values)
+
+get_marginal_distribution()
