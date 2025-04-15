@@ -12,10 +12,10 @@ seed: 101
 warmup_iters: 10000
 learning_rate: 5e-5
 weight_decay: 0
-train_batch_size: 32
+train_batch_size: 64
 n_gpu: 1
-gradient_clip_val: 5 #10.0
-predict_batch_size: 32
+gradient_clip_val: 1 #10.0
+predict_batch_size: 64
 compile_model: True
 
 # Logging parameters
@@ -44,7 +44,7 @@ save_model: True
 model_save_folder_path: "checkpoints/instanovoplus-base"
 ckpt_interval: 25000
 train_from_scratch: True
-resume_checkpoint: "/home/seantang/projects/def-wan/seantang/InstaNovo/checkpoints/instanovoplus-v1.1.0-alpha.ckpt"
+resume_checkpoint: "/home/seantang/projects/def-wan/seantang/InstaNovo/checkpoints/instanovoplus-base/epoch_4_step_324999.ckpt"
 
 blacklist:
 

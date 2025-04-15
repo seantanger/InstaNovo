@@ -1,0 +1,199 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) CCconfig        6)  ucx/1.14.1         11) flexiblas/3.3.1
+  2) gentoo/2023     7)  libfabric/1.18.0   12) blis/0.9.0
+  3) gcccore/.12.3   8)  pmix/4.2.4         13) StdEnv/2023
+  4) gcc/12.3        9)  ucc/1.2.0
+  5) hwloc/2.9.1     10) openmpi/4.1.5
+[04/14/25 10:29:39] INFO     Initializing InstaNovo inference.        cli.py:154
+                    INFO     Reading config from 'configs/inference'   cli.py:59
+                             with name 'default'.                               
+[04/14/25 10:29:42] INFO     Output path                              cli.py:185
+                             'instanovo_transformer_predictions_acpt.           
+                             csv' already exists and will be                    
+                             overwritten.                                       
+                    INFO     Loading InstaNovo model                  cli.py:221
+                             /home/seantang/projects/def-wan/seantang           
+                             /InstaNovo/checkpoints/instanovo-v1.1.0.           
+                             ckpt                                               
+[04/14/25 10:29:55] INFO     InstaNovo config:                        cli.py:227
+                             data_path:                                         
+                             /home/seantang/projects/def-wan/seantang           
+                             /InstaNovo/data/ms_proteometools/test.ip           
+                             c                                                  
+                             instanovo_model:                                   
+                             /home/seantang/projects/def-wan/seantang           
+                             /InstaNovo/checkpoints/instanovo-v1.1.0.           
+                             ckpt                                               
+                             instanovo_plus_model:                              
+                             instanovoplus-v1.1.0-alpha                         
+                             output_path:                                       
+                             instanovo_transformer_predictions_acpt.c           
+                             sv                                                 
+                             knapsack_path: null                                
+                             data_type: null                                    
+                             denovo: false                                      
+                             refine: false                                      
+                             num_beams: 5                                       
+                             max_length: 40                                     
+                             max_charge: 10                                     
+                             isotope_error_range:                               
+                             - 0                                                
+                             - 1                                                
+                             subset: 1.0                                        
+                             use_knapsack: true                                 
+                             save_beams: false                                  
+                             instanovo_predictions_path: null                   
+                             id_col: scan_number                                
+                             pred_col: predictions                              
+                             suppressed_residues:                               
+                             - (+25.98)                                         
+                             disable_terminal_residues_anywhere: true           
+                             num_workers: 16                                    
+                             batch_size: 128                                    
+                             device: auto                                       
+                             fp16: true                                         
+                             log_interval: 50                                   
+                             use_basic_logging: true                            
+                             filter_precursor_ppm: 20                           
+                             filter_confidence: 0.0001                          
+                             filter_fdr_threshold: 0.05                         
+                             residue_remapping:                                 
+                               M(ox): M[UNIMOD:35]                              
+                               M(+15.99): M[UNIMOD:35]                          
+                               S(p): S[UNIMOD:21]                               
+                               T(p): T[UNIMOD:21]                               
+                               Y(p): Y[UNIMOD:21]                               
+                               S(+79.97): S[UNIMOD:21]                          
+                               T(+79.97): T[UNIMOD:21]                          
+                               Y(+79.97): Y[UNIMOD:21]                          
+                               Q(+0.98): Q[UNIMOD:7]                            
+                               N(+0.98): N[UNIMOD:7]                            
+                               Q(+.98): Q[UNIMOD:7]                             
+                               N(+.98): N[UNIMOD:7]                             
+                               C(+57.02): C[UNIMOD:4]                           
+                               (+42.01): '[UNIMOD:1]'                           
+                               (+43.01): '[UNIMOD:5]'                           
+                               (-17.03): '[UNIMOD:385]'                         
+                             column_map:                                        
+                               Modified sequence: modified_sequence             
+                               MS/MS m/z: precursor_mz                          
+                               Mass: precursor_mass                             
+                               Charge: precursor_charge                         
+                               Mass values: mz_array                            
+                               Mass spectrum: mz_array                          
+                               Intensity: intensity_array                       
+                               Raw intensity spectrum:                          
+                             intensity_array                                    
+                               Scan number: scan_number                         
+                             index_columns:                                     
+                             - id                                               
+                             - experiment_name                                  
+                             - evidence_index                                   
+                             - scan_number                                      
+                             - spectrum_id                                      
+                             - global_index                                     
+                             - spectrum_index                                   
+                             - file_index                                       
+                             - sample                                           
+                             - file                                             
+                             - index                                            
+                             - fileno                                           
+                             - precursor_mz                                     
+                             - precursor_charge                                 
+                                                                                
+                    INFO     InstaNovo model params: 94,619,169       cli.py:228
+                    INFO     Performing search with 5 beams           cli.py:239
+                    INFO     Using device: cuda for InstaNovo      predict.py:58
+                             predictions                                        
+                    INFO     Loading data from                     predict.py:65
+                             /home/seantang/projects/def-wan/seant              
+                             ang/InstaNovo/data/ms_proteometools/t              
+                             est.ipc                                            
+[04/14/25 10:29:58] INFO     Data loaded, evaluating 100.0%,      predict.py:107
+                             53,074 samples in total.                           
+                    INFO     Vocab: {0: '[PAD]', 1: '[SOS]', 2:   predict.py:117
+                             '[EOS]', 3: 'G', 4: 'A', 5: 'S', 6:                
+                             'P', 7: 'V', 8: 'T', 9: 'C', 10:                   
+                             'L', 11: 'I', 12: 'N', 13: 'D', 14:                
+                             'Q', 15: 'K', 16: 'E', 17: 'M', 18:                
+                             'H', 19: 'F', 20: 'R', 21: 'Y', 22:                
+                             'W', 23: 'M[UNIMOD:35]', 24:                       
+                             'C[UNIMOD:4]', 25: 'N[UNIMOD:7]',                  
+                             26: 'Q[UNIMOD:7]', 27:                             
+                             'S[UNIMOD:21]', 28: 'T[UNIMOD:21]',                
+                             29: 'Y[UNIMOD:21]', 30:                            
+                             '[UNIMOD:1]', 31: '[UNIMOD:5]', 32:                
+                             '[UNIMOD:385]'}                                    
+[04/14/25 10:29:59] INFO     Using Knapsack Beam Search with 5    predict.py:165
+                             beam(s)                                            
+                    INFO     Knapsack path missing or not         predict.py:168
+                             specified, generating...                           
+                    WARNING  Negative mass found in residues:     predict.py:409
+                             ['[UNIMOD:385]'].                                  
+                    WARNING  These residues will be disabled when predict.py:410
+                             using knapsack decoding. A future                  
+                             release is planned to support                      
+                             negative masses.                                   
+                    INFO     Scaling masses.                     knapsack.py:130
+                    INFO     Initializing chart.                 knapsack.py:142
+                    INFO     Performing search.                  knapsack.py:149
+[04/14/25 10:33:51] INFO     Starting evaluation...               predict.py:206
+[04/14/25 10:59:12] INFO     Batch 00050/00415,                   predict.py:256
+                             [00:25:21/03:05:07, 30.433s/it]                    
+[04/14/25 11:25:08] INFO     Batch 00100/00415,                   predict.py:256
+                             [00:51:17/02:41:35, 30.778s/it]                    
+[04/14/25 11:51:04] INFO     Batch 00150/00415,                   predict.py:256
+                             [01:17:13/02:16:25, 30.889s/it]                    
+[04/14/25 12:15:06] INFO     Batch 00200/00415,                   predict.py:256
+                             [01:41:15/01:48:51, 30.378s/it]                    
+[04/14/25 12:41:21] INFO     Batch 00250/00415,                   predict.py:256
+                             [02:07:30/01:24:09, 30.603s/it]                    
+[04/14/25 13:03:50] INFO     Batch 00300/00415,                   predict.py:256
+                             [02:29:59/00:57:29, 29.997s/it]                    
+[04/14/25 13:30:16] INFO     Batch 00350/00415,                   predict.py:256
+                             [02:56:25/00:32:45, 30.244s/it]                    
+[04/14/25 13:57:05] INFO     Batch 00400/00415,                   predict.py:256
+                             [03:23:14/00:07:37, 30.487s/it]                    
+[04/14/25 14:04:30] INFO     Batch 00415/00415,                   predict.py:256
+                             [03:30:39/00:00:00, 30.456s/it]                    
+                    INFO     Time taken for                       predict.py:263
+                             /home/seantang/projects/def-wan/sean               
+                             tang/InstaNovo/data/ms_proteometools               
+                             /test.ipc is 12639.3 seconds                       
+                    INFO     Average time per batch (bs=128):     predict.py:265
+                             30.5 seconds                                       
+[04/14/25 14:04:49] INFO     Performance on                       predict.py:311
+                             /home/seantang/projects/def-wan/sean               
+                             tang/InstaNovo/data/ms_proteometools               
+                             /test.ipc:                                         
+                    INFO       aa_er       0.22510                predict.py:312
+                    INFO       aa_prec     0.68343                predict.py:313
+                    INFO       aa_recall   0.68410                predict.py:314
+                    INFO       pep_prec    0.58948                predict.py:315
+                    INFO       pep_recall  0.58825                predict.py:316
+                    INFO       auc         0.51393                predict.py:317
+[04/14/25 14:04:51] INFO     Performance at 5.0% FDR:             predict.py:333
+                    INFO       aa_prec     0.96947                predict.py:334
+                    INFO       aa_recall   0.00607                predict.py:335
+                    INFO       pep_prec    0.95161                predict.py:336
+                    INFO       pep_recall  0.00667                predict.py:337
+                    INFO       confidence  0.99955                predict.py:338
+                    INFO     Performance with filtering at 20 ppm predict.py:343
+                             delta mass:                                        
+                    INFO       aa_prec     0.74583                predict.py:350
+                    INFO       aa_recall   0.67018                predict.py:351
+                    INFO       pep_prec    0.64551                predict.py:352
+                    INFO       pep_recall  0.58170                predict.py:353
+                    INFO     Rows filtered: 5247 (9.89%)          predict.py:354
+                    INFO     Performance with filtering           predict.py:372
+                             confidence < 0.0001                                
+[04/14/25 14:04:52] INFO       aa_prec     0.81823                predict.py:379
+                    INFO       aa_recall   0.66682                predict.py:380
+                    INFO       pep_prec    0.69484                predict.py:381
+                    INFO       pep_recall  0.58793                predict.py:382
+                    INFO     Rows filtered: 8166 (15.39%)         predict.py:383
+[04/14/25 14:04:53] INFO     Predictions saved to                 predict.py:398
+                             instanovo_transformer_predictions_ac               
+                             pt.csv                                             

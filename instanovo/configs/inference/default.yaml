@@ -11,7 +11,7 @@ data_type: # .csv, .mgf, .mzml, .mzxml
 # Inference mode
 denovo: False
 refine: False
-num_beams: 1 # 1 defaults to greedy search with basic filtering
+num_beams: 5 # 1 defaults to greedy search with basic filtering
 max_length: 40
 max_charge: 10 # Must be <= model max charge
 isotope_error_range: [0, 1]

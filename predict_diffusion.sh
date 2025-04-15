@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=120:00:00
+#SBATCH --time=24:00:00
 #SBATCH --account=def-wan
 #SBATCH --gres=gpu:1       # Request GPU "generic resources"
 #SBATCH --cpus-per-task=6  # Cores proportional to GPUs: 6 on Cedar, 16 on Graham.
@@ -12,7 +12,7 @@ module load python/3.11
 source .venv/bin/activate
 
 instanovo diffusion predict \
-    --instanovo-plus-model '/home/seantang/projects/def-wan/seantang/InstaNovo/checkpoints/instanovoplus-base-v2/epoch_28_step_449999.ckpt' \
-    --data-path /home/seantang/projects/def-wan/seantang/InstaNovo/data/new_schema/test.ipc \
-    --output-path instanovo_plus_predictions.csv \
+    --instanovo-plus-model 'checkpoints/instanovoplus-base/epoch_11_step_374999.ckpt' \
+    --data-path /home/seantang/projects/def-wan/seantang/InstaNovo/data/ms_proteometools/test.ipc \
     --no-refinement --evaluation \
+    --output-path instanovo_plus_predictions.csv

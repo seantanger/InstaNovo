@@ -1,0 +1,147 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) CCconfig        6)  ucx/1.14.1         11) flexiblas/3.3.1
+  2) gentoo/2023     7)  libfabric/1.18.0   12) blis/0.9.0
+  3) gcccore/.12.3   8)  pmix/4.2.4         13) StdEnv/2023
+  4) gcc/12.3        9)  ucc/1.2.0
+  5) hwloc/2.9.1     10) openmpi/4.1.5
+[04/14/25 18:48:55] INFO     Reading config from    predict_diffusion_marg.py:54
+                             'instanovo_marg/config                             
+                             s/inference' with name                             
+                             'default'.                                         
+/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+[04/14/25 18:49:03] INFO     Loading InstaNovoPlus  multinomial_diffusion.py:261
+                             model to device: cuda.                             
+Loaded model with 172,584,193 parameters
+Configuration:
+ data_path: /home/seantang/projects/def-wan/seantang/InstaNovo/data/ms_proteometools/test.ipc
+instanovo_model: instanovo-v1.1.0
+instanovo_plus_model: checkpoints/instanovoplus-base-marg/epoch_11_step_374999.ckpt
+output_path: marg_instanovo_plus_predictions.csv
+knapsack_path: null
+data_type: null
+denovo: false
+refine: false
+num_beams: 1
+max_length: 40
+max_charge: 10
+isotope_error_range:
+- 0
+- 1
+subset: 1.0
+use_knapsack: false
+save_beams: false
+instanovo_predictions_path: null
+id_col: scan_number
+pred_col: predictions
+suppressed_residues:
+- (+25.98)
+disable_terminal_residues_anywhere: true
+num_workers: 16
+batch_size: 128
+device: auto
+fp16: true
+log_interval: 50
+use_basic_logging: true
+filter_precursor_ppm: 20
+filter_confidence: 0.0001
+filter_fdr_threshold: 0.05
+residue_remapping:
+  M(ox): M[UNIMOD:35]
+  M(+15.99): M[UNIMOD:35]
+  S(p): S[UNIMOD:21]
+  T(p): T[UNIMOD:21]
+  Y(p): Y[UNIMOD:21]
+  S(+79.97): S[UNIMOD:21]
+  T(+79.97): T[UNIMOD:21]
+  Y(+79.97): Y[UNIMOD:21]
+  Q(+0.98): Q[UNIMOD:7]
+  N(+0.98): N[UNIMOD:7]
+  Q(+.98): Q[UNIMOD:7]
+  N(+.98): N[UNIMOD:7]
+  C(+57.02): C[UNIMOD:4]
+  (+42.01): '[UNIMOD:1]'
+  (+43.01): '[UNIMOD:5]'
+  (-17.03): '[UNIMOD:385]'
+column_map:
+  Modified sequence: modified_sequence
+  MS/MS m/z: precursor_mz
+  Mass: precursor_mass
+  Charge: precursor_charge
+  Mass values: mz_array
+  Mass spectrum: mz_array
+  Intensity: intensity_array
+  Raw intensity spectrum: intensity_array
+  Scan number: scan_number
+index_columns:
+- id
+- experiment_name
+- evidence_index
+- scan_number
+- spectrum_id
+- global_index
+- spectrum_index
+- file_index
+- sample
+- file
+- index
+- fileno
+- precursor_mz
+- precursor_charge
+
+[04/14/25 18:49:04] INFO     Using device cuda for instanovo_marg+ predict.py:51
+                             predictions                                        
+                    INFO     Loading data from                     predict.py:58
+                             /home/seantang/projects/def-wan/seant              
+                             ang/InstaNovo/data/ms_proteometools/t              
+                             est.ipc                                            
+                    INFO     Data loaded, evaluating 100.0%,      predict.py:100
+                             53,074 samples in total.                           
+                    INFO     Vocab: {0: '[PAD]', 1: '[SOS]', 2:   predict.py:169
+                             '[EOS]', 3: 'G', 4: 'A', 5: 'S', 6:                
+                             'P', 7: 'V', 8: 'T', 9: 'C', 10:                   
+                             'L', 11: 'I', 12: 'N', 13: 'D', 14:                
+                             'Q', 15: 'K', 16: 'E', 17: 'M', 18:                
+                             'H', 19: 'F', 20: 'R', 21: 'Y', 22:                
+                             'W', 23: 'M[UNIMOD:35]', 24:                       
+                             'C[UNIMOD:4]', 25: 'N[UNIMOD:7]',                  
+                             26: 'Q[UNIMOD:7]', 27:                             
+                             'S[UNIMOD:21]', 28: 'T[UNIMOD:21]',                
+                             29: 'Y[UNIMOD:21]', 30:                            
+                             '[UNIMOD:1]', 31: '[UNIMOD:5]', 32:                
+                             '[UNIMOD:385]'}                                    
+                    INFO     Initializing decoder.                predict.py:219
+                    INFO     Performing decoding.                 predict.py:234
+/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/functional.py:5193: UserWarning: Support for mismatched key_padding_mask and attn_mask is deprecated. Use same type for both instead.
+  warnings.warn(
+[04/14/25 18:49:54] INFO     Batch 00050/00415,                   predict.py:261
+                             [00:00:49/00:06:02, 0.992s/it]                     
+[04/14/25 18:50:27] INFO     Batch 00100/00415,                   predict.py:261
+                             [00:01:22/00:04:20, 0.827s/it]                     
+[04/14/25 18:51:01] INFO     Batch 00150/00415,                   predict.py:261
+                             [00:01:56/00:03:25, 0.775s/it]                     
+[04/14/25 18:51:34] INFO     Batch 00200/00415,                   predict.py:261
+                             [00:02:29/00:02:40, 0.748s/it]                     
+[04/14/25 18:52:07] INFO     Batch 00250/00415,                   predict.py:261
+                             [00:03:02/00:02:00, 0.732s/it]                     
+[04/14/25 18:52:40] INFO     Batch 00300/00415,                   predict.py:261
+                             [00:03:35/00:01:22, 0.720s/it]                     
+[04/14/25 18:53:13] INFO     Batch 00350/00415,                   predict.py:261
+                             [00:04:08/00:00:46, 0.711s/it]                     
+[04/14/25 18:53:47] INFO     Batch 00400/00415,                   predict.py:261
+                             [00:04:42/00:00:10, 0.705s/it]                     
+[04/14/25 18:53:56] INFO     Batch 00415/00415,                   predict.py:261
+                             [00:04:51/00:00:00, 0.703s/it]                     
+                    INFO     Time taken for                       predict.py:272
+                             /home/seantang/projects/def-wan/sean               
+                             tang/InstaNovo/data/ms_proteometools               
+                             /test.ipc is 291.9 seconds                         
+                    INFO     Average time per batch (bs=128): 0.7 predict.py:274
+                             seconds                                            
+[04/14/25 18:54:16] INFO     aa_prec: 0.0094, aa_recall: 0.0093,  predict.py:291
+                             pep_recall: 0.0000, aa_er: 0.8753                  
+                    INFO     Saving predictions.                  predict.py:300
+                    INFO     Predictions saved to                 predict.py:321
+                             marg_instanovo_plus_predictions.csv                

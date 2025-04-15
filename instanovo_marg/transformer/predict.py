@@ -24,7 +24,7 @@ from instanovo_marg.inference import (
     ScoredSequence,
 )
 from instanovo_marg.transformer.dataset import SpectrumDataset, collate_batch
-from instanovo_marg.transformer.model import instanovo_marg
+from instanovo_marg.transformer.model import Instanovo_marg
 from instanovo_marg.utils import Metrics, SpectrumDataFrame, s3
 from instanovo_marg.utils.colorlogging import ColorLog
 from instanovo_marg.utils.device_handler import check_device
@@ -36,7 +36,7 @@ CONFIG_PATH = Path(__file__).parent.parent / "configs" / "inference"
 
 def get_preds(
     config: DictConfig,
-    model: instanovo_marg,
+    model: Instanovo_marg,
     model_config: DictConfig,
 ) -> None:
     """Get predictions from a trained model."""
@@ -402,7 +402,7 @@ def get_preds(
             s3.upload(output_path, s3.convert_to_s3_output(output_path))
 
 
-def _setup_knapsack(model: instanovo_marg) -> Knapsack:
+def _setup_knapsack(model: Instanovo_marg) -> Knapsack:
     residue_masses = dict(model.residue_set.residue_masses.copy())
     negative_residues = [k for k, v in residue_masses.items() if v < 0]
     if len(negative_residues) > 0:

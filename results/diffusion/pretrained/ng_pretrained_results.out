@@ -1,0 +1,249 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) CCconfig        6)  ucx/1.14.1         11) flexiblas/3.3.1
+  2) gentoo/2023     7)  libfabric/1.18.0   12) blis/0.9.0
+  3) gcccore/.12.3   8)  pmix/4.2.4         13) StdEnv/2023
+  4) gcc/12.3        9)  ucc/1.2.0
+  5) hwloc/2.9.1     10) openmpi/4.1.5
+[04/14/25 10:56:26] INFO     Initializing InstaNovo+ inference.       cli.py:310
+                    INFO     Reading config from 'configs/inference'   cli.py:59
+                             with name 'default'.                               
+[04/14/25 10:56:27] INFO     Output path                              cli.py:344
+                             'instanovo_plus_predictions_pretrained.c           
+                             sv' already exists and will be                     
+                             overwritten.                                       
+                    INFO     InstaNovo+ config:                       cli.py:388
+                             data_path:                                         
+                             /home/seantang/projects/def-wan/seantang           
+                             /InstaNovo/data/ms_proteometools/test.ip           
+                             c                                                  
+                             instanovo_model: instanovo-v1.1.0                  
+                             instanovo_plus_model:                              
+                             /home/seantang/projects/def-wan/seantang           
+                             /InstaNovo/checkpoints/instanovoplus-v1.           
+                             1.0-alpha.ckpt                                     
+                             output_path:                                       
+                             instanovo_plus_predictions_pretrained.cs           
+                             v                                                  
+                             knapsack_path: null                                
+                             data_type: null                                    
+                             denovo: false                                      
+                             refine: false                                      
+                             num_beams: 5                                       
+                             max_length: 40                                     
+                             max_charge: 10                                     
+                             isotope_error_range:                               
+                             - 0                                                
+                             - 1                                                
+                             subset: 1.0                                        
+                             use_knapsack: true                                 
+                             save_beams: false                                  
+                             instanovo_predictions_path: null                   
+                             id_col: scan_number                                
+                             pred_col: predictions                              
+                             suppressed_residues:                               
+                             - (+25.98)                                         
+                             disable_terminal_residues_anywhere: true           
+                             num_workers: 16                                    
+                             batch_size: 128                                    
+                             device: auto                                       
+                             fp16: true                                         
+                             log_interval: 50                                   
+                             use_basic_logging: true                            
+                             filter_precursor_ppm: 20                           
+                             filter_confidence: 0.0001                          
+                             filter_fdr_threshold: 0.05                         
+                             residue_remapping:                                 
+                               M(ox): M[UNIMOD:35]                              
+                               M(+15.99): M[UNIMOD:35]                          
+                               S(p): S[UNIMOD:21]                               
+                               T(p): T[UNIMOD:21]                               
+                               Y(p): Y[UNIMOD:21]                               
+                               S(+79.97): S[UNIMOD:21]                          
+                               T(+79.97): T[UNIMOD:21]                          
+                               Y(+79.97): Y[UNIMOD:21]                          
+                               Q(+0.98): Q[UNIMOD:7]                            
+                               N(+0.98): N[UNIMOD:7]                            
+                               Q(+.98): Q[UNIMOD:7]                             
+                               N(+.98): N[UNIMOD:7]                             
+                               C(+57.02): C[UNIMOD:4]                           
+                               (+42.01): '[UNIMOD:1]'                           
+                               (+43.01): '[UNIMOD:5]'                           
+                               (-17.03): '[UNIMOD:385]'                         
+                             column_map:                                        
+                               Modified sequence: modified_sequence             
+                               MS/MS m/z: precursor_mz                          
+                               Mass: precursor_mass                             
+                               Charge: precursor_charge                         
+                               Mass values: mz_array                            
+                               Mass spectrum: mz_array                          
+                               Intensity: intensity_array                       
+                               Raw intensity spectrum:                          
+                             intensity_array                                    
+                               Scan number: scan_number                         
+                             index_columns:                                     
+                             - id                                               
+                             - experiment_name                                  
+                             - evidence_index                                   
+                             - scan_number                                      
+                             - spectrum_id                                      
+                             - global_index                                     
+                             - spectrum_index                                   
+                             - file_index                                       
+                             - sample                                           
+                             - file                                             
+                             - index                                            
+                             - fileno                                           
+                             - precursor_mz                                     
+                             - precursor_charge                                 
+                                                                                
+                    INFO     Loading InstaNovo+ model                 cli.py:406
+                             /home/seantang/projects/def-wan/seantang           
+                             /InstaNovo/checkpoints/instanovoplus-v1.           
+                             1.0-alpha.ckpt                                     
+/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+[04/14/25 10:56:35] INFO     Loading InstaNovoPlus  multinomial_diffusion.py:259
+                             model to device: cuda.                             
+[04/14/25 10:56:38] INFO     InstaNovo+ config:                       cli.py:428
+                             data_path:                                         
+                             /home/seantang/projects/def-wan/seantang           
+                             /InstaNovo/data/ms_proteometools/test.ip           
+                             c                                                  
+                             instanovo_model: instanovo-v1.1.0                  
+                             instanovo_plus_model:                              
+                             /home/seantang/projects/def-wan/seantang           
+                             /InstaNovo/checkpoints/instanovoplus-v1.           
+                             1.0-alpha.ckpt                                     
+                             output_path:                                       
+                             instanovo_plus_predictions_pretrained.cs           
+                             v                                                  
+                             knapsack_path: null                                
+                             data_type: null                                    
+                             denovo: false                                      
+                             refine: false                                      
+                             num_beams: 5                                       
+                             max_length: 40                                     
+                             max_charge: 10                                     
+                             isotope_error_range:                               
+                             - 0                                                
+                             - 1                                                
+                             subset: 1.0                                        
+                             use_knapsack: true                                 
+                             save_beams: false                                  
+                             instanovo_predictions_path: null                   
+                             id_col: scan_number                                
+                             pred_col: predictions                              
+                             suppressed_residues:                               
+                             - (+25.98)                                         
+                             disable_terminal_residues_anywhere: true           
+                             num_workers: 16                                    
+                             batch_size: 128                                    
+                             device: auto                                       
+                             fp16: true                                         
+                             log_interval: 50                                   
+                             use_basic_logging: true                            
+                             filter_precursor_ppm: 20                           
+                             filter_confidence: 0.0001                          
+                             filter_fdr_threshold: 0.05                         
+                             residue_remapping:                                 
+                               M(ox): M[UNIMOD:35]                              
+                               M(+15.99): M[UNIMOD:35]                          
+                               S(p): S[UNIMOD:21]                               
+                               T(p): T[UNIMOD:21]                               
+                               Y(p): Y[UNIMOD:21]                               
+                               S(+79.97): S[UNIMOD:21]                          
+                               T(+79.97): T[UNIMOD:21]                          
+                               Y(+79.97): Y[UNIMOD:21]                          
+                               Q(+0.98): Q[UNIMOD:7]                            
+                               N(+0.98): N[UNIMOD:7]                            
+                               Q(+.98): Q[UNIMOD:7]                             
+                               N(+.98): N[UNIMOD:7]                             
+                               C(+57.02): C[UNIMOD:4]                           
+                               (+42.01): '[UNIMOD:1]'                           
+                               (+43.01): '[UNIMOD:5]'                           
+                               (-17.03): '[UNIMOD:385]'                         
+                             column_map:                                        
+                               Modified sequence: modified_sequence             
+                               MS/MS m/z: precursor_mz                          
+                               Mass: precursor_mass                             
+                               Charge: precursor_charge                         
+                               Mass values: mz_array                            
+                               Mass spectrum: mz_array                          
+                               Intensity: intensity_array                       
+                               Raw intensity spectrum:                          
+                             intensity_array                                    
+                               Scan number: scan_number                         
+                             index_columns:                                     
+                             - id                                               
+                             - experiment_name                                  
+                             - evidence_index                                   
+                             - scan_number                                      
+                             - spectrum_id                                      
+                             - global_index                                     
+                             - spectrum_index                                   
+                             - file_index                                       
+                             - sample                                           
+                             - file                                             
+                             - index                                            
+                             - fileno                                           
+                             - precursor_mz                                     
+                             - precursor_charge                                 
+                                                                                
+                    INFO     InstaNovo+ model params: 172,584,193     cli.py:429
+                    INFO     Using device cuda for InstaNovo+      predict.py:51
+                             predictions                                        
+                    INFO     Loading data from                     predict.py:58
+                             /home/seantang/projects/def-wan/seant              
+                             ang/InstaNovo/data/ms_proteometools/t              
+                             est.ipc                                            
+[04/14/25 10:56:41] INFO     Data loaded, evaluating 100.0%,      predict.py:100
+                             53,074 samples in total.                           
+                    INFO     Vocab: {0: '[PAD]', 1: '[SOS]', 2:   predict.py:169
+                             '[EOS]', 3: 'G', 4: 'A', 5: 'S', 6:                
+                             'P', 7: 'V', 8: 'T', 9: 'C', 10:                   
+                             'L', 11: 'I', 12: 'N', 13: 'D', 14:                
+                             'Q', 15: 'K', 16: 'E', 17: 'M', 18:                
+                             'H', 19: 'F', 20: 'R', 21: 'Y', 22:                
+                             'W', 23: 'M[UNIMOD:35]', 24:                       
+                             'C[UNIMOD:4]', 25: 'N[UNIMOD:7]',                  
+                             26: 'Q[UNIMOD:7]', 27:                             
+                             'S[UNIMOD:21]', 28: 'T[UNIMOD:21]',                
+                             29: 'Y[UNIMOD:21]', 30:                            
+                             '[UNIMOD:1]', 31: '[UNIMOD:5]', 32:                
+                             '[UNIMOD:385]'}                                    
+                    INFO     Initializing decoder.                predict.py:219
+                    INFO     Performing decoding.                 predict.py:234
+/lustre06/project/6017024/seantang/InstaNovo/.venv/lib/python3.11/site-packages/torch/nn/functional.py:5193: UserWarning: Support for mismatched key_padding_mask and attn_mask is deprecated. Use same type for both instead.
+  warnings.warn(
+[04/14/25 11:01:05] INFO     Batch 00050/00415,                   predict.py:261
+                             [00:04:23/00:32:06, 5.278s/it]                     
+[04/14/25 11:04:49] INFO     Batch 00100/00415,                   predict.py:261
+                             [00:08:07/00:25:35, 4.874s/it]                     
+[04/14/25 11:08:32] INFO     Batch 00150/00415,                   predict.py:261
+                             [00:11:51/00:20:56, 4.741s/it]                     
+[04/14/25 11:12:16] INFO     Batch 00200/00415,                   predict.py:261
+                             [00:15:34/00:16:44, 4.672s/it]                     
+[04/14/25 11:15:58] INFO     Batch 00250/00415,                   predict.py:261
+                             [00:19:16/00:12:43, 4.627s/it]                     
+[04/14/25 11:19:42] INFO     Batch 00300/00415,                   predict.py:261
+                             [00:23:00/00:08:49, 4.602s/it]                     
+[04/14/25 11:23:25] INFO     Batch 00350/00415,                   predict.py:261
+                             [00:26:43/00:04:57, 4.582s/it]                     
+[04/14/25 11:27:09] INFO     Batch 00400/00415,                   predict.py:261
+                             [00:30:27/00:01:08, 4.568s/it]                     
+[04/14/25 11:28:15] INFO     Batch 00415/00415,                   predict.py:261
+                             [00:31:33/00:00:00, 4.563s/it]                     
+                    INFO     Time taken for                       predict.py:272
+                             /home/seantang/projects/def-wan/sean               
+                             tang/InstaNovo/data/ms_proteometools               
+                             /test.ipc is 1893.6 seconds                        
+                    INFO     Average time per batch (bs=128): 4.6 predict.py:274
+                             seconds                                            
+[04/14/25 11:28:26] INFO     aa_prec: 0.3467, aa_recall: 0.3487,  predict.py:291
+                             pep_recall: 0.2274, aa_er: 0.4452                  
+                    INFO     Saving predictions.                  predict.py:300
+[04/14/25 11:28:27] INFO     Predictions saved to                 predict.py:321
+                             instanovo_plus_predictions_pretraine               
+                             d.csv                                              
